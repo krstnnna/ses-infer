@@ -13,3 +13,25 @@ The survey showed two different personal narratives to participants and measured
 **Plan: Research question**
 Do people accurately detect SES signals provided in personal narratives, and does this affect decision-making procedures by provoking specific stereotypes?
 
+**Hypothetical file tree**
+- `src/`
+  - `main.py`: Main application script.
+  - `helper_functions.py`: Contains helper functions.
+- `docs/`
+  - `README.md`
+- `tests/`
+  - `test_main.py`
+  - `data/`
+    - `test.csv`
+- `lib/`
+  - `external_library/`
+- `data/`
+  - `dataset.xlsx`
+- `assets/`
+  - `logo.png`
+  - `banner.jpg`
+- `scripts/`
+  - `setup.sh`: Script to set up the environment.
+- `config/`
+  - `settings.json`: Configuration settings.
+

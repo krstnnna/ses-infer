@@ -48,5 +48,11 @@ po/*~
 # RStudio Connect folder
 rsconnect/
 
+#Dedicated directory
+localonly/
+
 # Files to be ignored
-/ses-infer/script.R
+script.R
+
+# Files not to be ignored
+!README.md
