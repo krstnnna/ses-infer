@@ -52,7 +52,9 @@ rsconnect/
 localonly/
 
 # Files to be ignored
-script.R
+
 
 # Files not to be ignored
 !README.md
+!script.R
+!dataset.xlsx
