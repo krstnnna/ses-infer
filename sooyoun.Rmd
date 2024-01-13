@@ -1,0 +1,28 @@
+---
+title: "PSYC 30550"
+short_title: "Ses-infer project Rmd"
+author:
+  - "Sooyoun"
+---
+
+```{r load-function, echo=TRUE}
+source("script.R")  # Replace with the actual path to your R script
+hello_world("My friend", FALSE, 10, 3)
+```
+
+# Nullam sed sapien sit amet nulla tincidunt aliquam.
+## Phasellus in turpis gravida, cursus felis vel, eleifend enim.
+### Donec non metus porttitor, gravida dui a, pretium eros.
+
+- Nullam sed sapien sit amet nulla tincidunt aliquam.
+- Phasellus in turpis gravida, cursus felis vel, eleifend enim.
+- Donec non metus porttitor, gravida dui a, pretium eros.
+
+1. Nullam sed sapien sit amet nulla tincidunt aliquam.
+2. Phasellus in turpis gravida, cursus felis vel, eleifend enim.
+3. Donec non metus porttitor, gravida dui a, pretium eros.
+
+[Lorem Ipsum](https://www.lipsum.com/)
+
+<!-- The weather outside is crazy -->
+
