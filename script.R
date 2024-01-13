@@ -25,5 +25,5 @@ hello_world <- function(name, is_morning, time_of_day, return_n_greetings) {
   return(result)
 }
 
-**Example**
+# Example
 hello_world("My friend", FALSE, 10, 3)
