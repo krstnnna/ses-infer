@@ -1,8 +1,7 @@
 ---
 title: "PSYC 30550"
+author: "Sooyoun"
 short_title: "Ses-infer project Rmd"
-author:
-  - "Sooyoun"
 ---
 
 ```{r load-function, echo=TRUE}
