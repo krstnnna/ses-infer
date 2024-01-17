@@ -4,6 +4,7 @@ author: "Sooyoun"
 short_title: "Ses-infer project Rmd"
 ---
 
+# HW 4,5
 ```{r load-function, echo=TRUE}
 source("script.R")  # Replace with the actual path to your R script
 hello_world("My friend", FALSE, 10, 3)
@@ -24,4 +25,38 @@ hello_world("My friend", FALSE, 10, 3)
 [Lorem Ipsum](https://www.lipsum.com/)
 
 <!-- The weather outside is crazy -->
+
+# HW 6
+
+```{r data-read-in}
+library(readxl)
+data <- read_xlsx("dataset.xlsx")
+
+# Examining the dataset structure (Tidiness check)
+str(data)
+
+# Columns are single variables.
+# Rows are single observations.
+# Cells are single measurements.
+# My dataset appears to be tidy.
+
+```
+
+```{r create-intermediate-dataset}
+library(dplyr)
+library(writexl)
+
+# Stimuli type, reports of perceived ses, perceived warmth and competence, perceiver ses are necessary variables for my analyses.
+inter_data <- data %>%
+  select(type, age, edu, class, rich, hire, a_inc, a_edu, a_class, comp, warm) %>%
+  filter(age > 35)
+
+# Writing the intermediate dataset
+write_xlsx(inter_data, "inter_data.xlsx")
+
+# Tidiness check
+str(inter_data)
+
+```
+
 
