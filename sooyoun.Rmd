@@ -47,12 +47,14 @@ library(dplyr)
 library(writexl)
 
 # Stimuli type, reports of perceived ses, perceived warmth and competence, perceiver ses are necessary variables for my analyses.
-inter_data <- data %>%
+data_prep <- data %>%
   select(type, age, edu, class, rich, hire, a_inc, a_edu, a_class, comp, warm) %>%
   filter(age > 35)
 
+data_prep$variable <- as.factor(data_filtered$variable)
+
 # Writing the intermediate dataset
-write_xlsx(inter_data, "inter_data.xlsx")
+write_xlsx(data_prep, "inter_data.xlsx")
 
 # Tidiness check
 str(inter_data)
