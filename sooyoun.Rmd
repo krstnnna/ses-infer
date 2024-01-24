@@ -51,13 +51,13 @@ data_prep <- data %>%
   select(type, age, edu, class, rich, hire, a_inc, a_edu, a_class, comp, warm) %>%
   filter(age > 35)
 
-data_prep$variable <- as.factor(data_filtered$variable)
+data_prep$type <- as.factor(data_prep$type)
 
 # Writing the intermediate dataset
-write_xlsx(data_prep, "inter_data.xlsx")
+write_xlsx(data_prep, "data_prep.xlsx")
 
 # Tidiness check
-str(inter_data)
+str(data_prep)
 
 ```
 
