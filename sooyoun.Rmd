@@ -4,61 +4,89 @@ author: "Sooyoun"
 short_title: "Ses-infer project Rmd"
 ---
 
-# HW 4,5
-```{r load-function, echo=TRUE}
-source("script.R")  # Replace with the actual path to your R script
-hello_world("My friend", FALSE, 10, 3)
+```{r study description, echo=TRUE}
+
+# Survey participants will read one of the two personal narratives signaling different social classes. They will make inferences about the narrator, including the narrator's education level, relative social class, competence level, and intelligence level. They will also indicate their willingness to hire the narrator from an employer's perspective, and their demographic info.
+
+# The study will explore,
+# 1. Whether participants accurately guess the narrator's social class
+# 2. Whether the upper-class narrator is inferred to be more competent and intelligent than the lower-class narrator
+# 3. Whether such inferences about the narrator influence participants' willingness to hire the narrator
+# 4. Whether participants' social class affect these tendencies.
+
 ```
 
-# Nullam sed sapien sit amet nulla tincidunt aliquam.
-## Phasellus in turpis gravida, cursus felis vel, eleifend enim.
-### Donec non metus porttitor, gravida dui a, pretium eros.
+# HW 9: Data prep
 
-- Nullam sed sapien sit amet nulla tincidunt aliquam.
-- Phasellus in turpis gravida, cursus felis vel, eleifend enim.
-- Donec non metus porttitor, gravida dui a, pretium eros.
+```{r data preparation, echo=TRUE}
 
-1. Nullam sed sapien sit amet nulla tincidunt aliquam.
-2. Phasellus in turpis gravida, cursus felis vel, eleifend enim.
-3. Donec non metus porttitor, gravida dui a, pretium eros.
-
-[Lorem Ipsum](https://www.lipsum.com/)
-
-<!-- The weather outside is crazy -->
-
-# HW 6
-
-```{r data-read-in}
 library(readxl)
-data <- read_xlsx("dataset.xlsx")
-
-# Examining the dataset structure (Tidiness check)
-str(data)
-
-# Columns are single variables.
-# Rows are single observations.
-# Cells are single measurements.
-# My dataset appears to be tidy.
-
-```
-
-```{r create-intermediate-dataset}
 library(dplyr)
 library(writexl)
+library(tidyverse)
 
-# Stimuli type, reports of perceived ses, perceived warmth and competence, perceiver ses are necessary variables for my analyses.
-data_prep <- data %>%
-  select(type, age, edu, class, rich, hire, a_inc, a_edu, a_class, comp, warm) %>%
-  filter(age > 35)
+# Read data
+dataset <- read_xlsx("dataset.xlsx")
 
-data_prep$type <- as.factor(data_prep$type)
+# Tidiness check
+str(dataset)
 
-# Writing the intermediate dataset
-write_xlsx(data_prep, "data_prep.xlsx")
+# Data wrangling
+
+data_prep <- dataset %>%
+  select(type, gender, age, edu, class, hire, a_inc, a_edu, a_class, comp, intel) %>%   # select columns
+  filter(age > 35) %>%    # only include participants above age 35
+  mutate(across(c(type, gender), factor)) %>%
+  mutate(type = case_when(
+    type == "1" ~ "upper-class",
+    type == "2" ~ "lower-class",
+    TRUE ~ type  )) %>%   # name two types of stimuli
+  mutate(gender = case_when(
+    gender == "1" ~ "male",
+    gender == "2" ~ "female",
+    TRUE ~ gender  )) %>%   # name two types of gender
+  mutate(across(c(type, gender), factor)) %>%   # type and gender are factor variables
+  mutate(social_class = type, evaluator_gender = gender, evaluator_age = age, evaluator_edu = edu,
+         evaluator_class = class, hiring_pref = hire, perceived_inc = a_inc, perceived_edu = a_edu,
+         perceived_class = a_class, perceived_comp = comp, perceived_intel = intel) %>%   # change names
+  select(social_class, perceived_inc, perceived_edu, perceived_class, perceived_comp, perceived_intel, hiring_pref,
+         evaluator_gender, evaluator_age, evaluator_edu, evaluator_class)   # final column selection
+
+# Data description: perceived_(  ) refers to participants' indicated perception of the narrator. evaluator_(  ) refers to participants' reported demographic info.
 
 # Tidiness check
 str(data_prep)
 
+# Export data
+write_xlsx(data_prep, "data_prep.xlsx")
+
 ```
 
+# HW 10: Plots
+
+```{r plotting, echo=TRUE}
+
+# 1. Group Bar Chart: Perceived competence and intelligence by narrator's social class
+# Compare the perceived competence and intelligence of the narrators by their social class.
+
+**Data Requirements**:
+  - social_class (categorical): the type of narrative the participant read (upper-class, lower-class)
+  - perceived_comp (numerical, continuous): perceived competence of the narrator
+  - perceived_intel (numerical, continuous): perceived intelligence of the narrator
+**Plot Elements**:
+  - X-axis: social_class
+  - Y-axis: average scores of perceived_comp and perceived_intel
+  - Two sets of bars for each social_class (different colors)
+
+# 2. Line Chart: Participant's willingness to hire the narrator based on own social class
+
+**Data Requirements**:
+  - evaluator_class (numerical, continuous): self-reported subjective social class of participants
+  - hiring_pref (numerical, continuous): participants’ willingness to hire the narrator
+**Plot Elements**:
+  - X-axis: evaluator_class (group into meaningful categories?)
+  - Y-axis: average hiring_pref
+  - Create separate lines for each social_class (different colors)
+
+# These plots will visually summarize (1) the impact of perceived social class on narrator evaluation and (2) the influence of participants' own social class on these patterns.
 
