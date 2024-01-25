@@ -6,13 +6,13 @@ short_title: "Ses-infer project Rmd"
 
 ```{r study description, echo=TRUE}
 
-# Survey participants will read one of the two personal narratives signaling different social classes. They will make inferences about the narrator, including the narrator's education level, relative social class, competence level, and intelligence level. They will also indicate their willingness to hire the narrator from an employer's perspective, and their demographic info.
+Survey participants will read one of the two personal narratives signaling different social classes. They will make inferences about the narrator, including the narrator's education level, relative social class, competence level, and intelligence level. They will also indicate their willingness to hire the narrator from an employer's perspective, and their demographic info.
 
-# The study will explore,
-# 1. Whether participants accurately guess the narrator's social class
-# 2. Whether the upper-class narrator is inferred to be more competent and intelligent than the lower-class narrator
-# 3. Whether such inferences about the narrator influence participants' willingness to hire the narrator
-# 4. Whether participants' social class affect these tendencies.
+The study will explore,
+1. Whether participants accurately guess the narrator's social class.
+2. Whether the upper-class narrator is inferred to be more competent and intelligent than the lower-class narrator.
+3. Whether such inferences about the narrator influence participants' willingness to hire the narrator.
+4. Whether participants' social class affect these tendencies.
 
 ```
 
@@ -32,7 +32,6 @@ dataset <- read_xlsx("dataset.xlsx")
 str(dataset)
 
 # Data wrangling
-
 data_prep <- dataset %>%
   select(type, gender, age, edu, class, hire, a_inc, a_edu, a_class, comp, intel) %>%   # select columns
   filter(age > 35) %>%    # only include participants above age 35
@@ -66,8 +65,7 @@ write_xlsx(data_prep, "data_prep.xlsx")
 
 ```{r plotting, echo=TRUE}
 
-# 1. Group Bar Chart: Perceived competence and intelligence by narrator's social class
-# Compare the perceived competence and intelligence of the narrators by their social class.
+1. Group Bar Chart: Perceived competence and intelligence by narrator's social class
 
 **Data Requirements**:
   - social_class (categorical): the type of narrative the participant read (upper-class, lower-class)
@@ -78,7 +76,7 @@ write_xlsx(data_prep, "data_prep.xlsx")
   - Y-axis: average scores of perceived_comp and perceived_intel
   - Two sets of bars for each social_class (different colors)
 
-# 2. Line Chart: Participant's willingness to hire the narrator based on own social class
+2. Line Chart: Participant's willingness to hire the narrator based on own social class
 
 **Data Requirements**:
   - evaluator_class (numerical, continuous): self-reported subjective social class of participants
@@ -90,3 +88,4 @@ write_xlsx(data_prep, "data_prep.xlsx")
 
 # These plots will visually summarize (1) the impact of perceived social class on narrator evaluation and (2) the influence of participants' own social class on these patterns.
 
+```
