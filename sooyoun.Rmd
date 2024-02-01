@@ -63,7 +63,7 @@ write_xlsx(data_prep, "data_prep.xlsx")
 
 # HW 10: Plots
 
-```{r plotting, echo=TRUE}
+```{r plot plan, echo=TRUE}
 
 1. Group Bar Chart: Perceived competence and intelligence by narrator's social class
 
@@ -87,5 +87,39 @@ write_xlsx(data_prep, "data_prep.xlsx")
   - Create separate lines for each social_class (different colors)
 
 # These plots will visually summarize (1) the impact of perceived social class on narrator evaluation and (2) the influence of participants' own social class on these patterns.
+
+```
+
+```{r HW 11 plot code, echo=TRUE}
+
+# HW 11
+
+library(ggplot2)
+library(dplyr)
+
+starwars_data <- read.csv('sw-wrangled.csv')
+
+# Histogram of the height_cm column
+ggplot(starwars_data, aes(x = height_cm)) +
+  geom_histogram(binwidth = 10, fill = "grey", color = "black") +
+  labs(x = "height_cm", y = "count")
+
+# Histogram of hair color sorted
+starwars_data <- starwars_data %>% 
+  filter(!is.na(hair)) 
+starwars_data %>%
+  count(hair) %>% 
+  mutate(sorted_hair = reorder(hair, n)) %>%
+  ggplot(aes(x = sorted_hair, y = n)) +
+  geom_bar(stat = "identity", fill = "grey", color = "black") +
+  labs(x = "Hair Color", y = "Count")
+
+# Scatter plot of mass vs. height_in
+ggplot(starwars_data, aes(x = height_in, y = mass)) +
+  geom_point(shape = 17) +  # shape 17 is a filled triangle
+  labs(x = "height_in", y = "mass", ylim = c(0,50))
+
+## The outlier (1358) ? How should I manage it?
+## Can “pretty up” my plots by adding codes like theme_minimal(), grouping by color, etc.
 
 ```
