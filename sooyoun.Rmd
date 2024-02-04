@@ -123,3 +123,89 @@ ggplot(starwars_data, aes(x = height_in, y = mass)) +
 ## Can “pretty up” my plots by adding codes like theme_minimal(), grouping by color, etc.
 
 ```
+
+```{r HW 12 plot code, echo = TRUE}
+
+library(dplyr)
+library(ggplot2)
+
+starwars_data <- read.csv('sw-wrangled.csv')
+data <- starwars_data %>%
+  filter(mass != 1358) ## example plots don't seem to have this value so I excluded...
+
+# Plot 1
+plot <- ggplot(data, aes(x = hair, y = mass, fill = hair)) +
+  geom_boxplot(alpha=0.3) +
+  theme(legend.position="none") +
+  labs(x = "Hair color (s)", y = "Mass (kg)") +
+  theme_minimal()
+print(plot)
+
+# Plot 2
+
+data$brown_hair_category <- ifelse(data$hair == "brown", "Has brown hair", "No brown hair")
+plot <- ggplot(data, aes(x = mass, y = height_in)) +
+  geom_point() + 
+  geom_smooth(method = "lm", color = "blue", fill = "blue", alpha = 0.2) +
+  facet_wrap(~brown_hair_category) +
+  labs(title = "Mass vs. height by brown-hair-havingness",
+       subtitle = "A critically important analysis",
+       x = "mass", y = "height_in") +
+       theme_minimal()
+print(plot)
+
+# Plot 3
+
+species_gender_count <- data %>%
+  group_by(species_first_letter = substr(species, 1, 1), gender) %>%
+  summarise(count = n(), .groups = 'drop')
+plot <- ggplot(species_gender_count, aes(x = species_first_letter, y = count, fill = gender)) +
+  geom_bar(stat = 'identity', position = 'stack') +
+  coord_flip() +
+  labs(x = "species first letter", y = "count", title = "A clear male human bias") +
+  theme(plot.title = element_text(hjust = 1, size = 8, vjust = 1)) +
+  theme(legend.position="bottom") +
+  scale_fill_manual(values = c("m" = "cyan3", "f" = "salmon")) +
+  theme_minimal()
+plot <- plot + 
+  theme(plot.title = element_text(hjust = 1, vjust = 1, size = 10, face = "plain"),
+        plot.title.position = "plot")
+print(plot)
+
+# Adding code for HW 10
+
+# Participant's willingness to hire the narrator based on own social class
+# Group evaluator_class
+data$evaluator_class_grouped <- cut(data$evaluator_class, breaks=quantile(data$evaluator_class, probs=0:5/5), include.lowest=TRUE, labels=FALSE)
+
+# Average hiring_pref for each group of evaluator_class
+avg_hiring_pref <- data %>%
+  group_by(evaluator_class_grouped, social_class) %>%
+  summarise(average_hiring_pref = mean(hiring_pref, na.rm = TRUE), .groups = 'drop')
+
+# Diff clors for two social class groups
+colors <- c("lower-class" = "lightslateblue", "upper-class" = "hotpink2")
+
+# Line chart with separate lines for each 'social_class'
+ggplot(avg_hiring_pref, aes(x = evaluator_class_grouped, y = average_hiring_pref, group = social_class, color = social_class)) +
+  geom_line() +
+  geom_point() +
+  labs(x = "Evaluator social class", y = "Average hiring preference") +
+  scale_x_continuous(breaks = unique(avg_hiring_pref$evaluator_class_grouped)) +
+  scale_color_manual(values = colors)
+
+# Tuning up HW 11 plot
+
+starwars_data <- starwars_data %>% 
+  filter(!is.na(hair)) 
+starwars_data %>%
+  count(hair) %>% 
+  mutate(sorted_hair = reorder(hair, n)) %>%
+  ggplot(aes(x = sorted_hair, y = n, fill = hair)) +
+  geom_bar(stat = "identity") +
+  labs(x = "Hair Color", y = "Count") +
+  scale_fill_brewer(palette = "Set3") +
+  theme_minimal(base_size = 14)
+
+```
+
