@@ -1,0 +1,88 @@
+---
+title: "PSYC 30550"
+author: "Sooyoun"
+short_title: "Ses-infer project Rmd 2"
+---
+
+# HW 14
+
+## Plot 1
+### Figure \@ref(fig:hair-color) depicts the distribution of hair colors among subjects.
+
+```{r hair-color, fig.cap="(ref:hair-color)"}
+
+library(knitr)
+library(kableExtra)
+library(ggplot2)
+library(dplyr)
+
+starwars_data <- read.csv('sw-wrangled.csv') %>%
+  filter(!is.na(hair)) %>%
+  count(hair) %>%
+  mutate(sorted_hair = reorder(hair, n))
+
+ggplot(starwars_data, aes(x = sorted_hair, y = n)) +
+  geom_bar(stat = "identity", fill = rownames(starwars_data), color = "black") + 
+  labs(x = "Hair Color", y = "Count", title = "Distribution of Hair Colors") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, color = "#2F4F4F"),
+        axis.title.x = element_text(face = "bold", color = "#2F4F4F"),
+        axis.title.y = element_text(face = "bold", color = "#2F4F4F"),
+        plot.title = element_text(hjust = 0.5, face = "bold", color = "black"))
+
+```
+
+## Plot 2
+### Figure \@ref(fig:mass-height-brown), illustrates the relationship between mass and height for subjects with brown hair.
+
+```{r mass-height-brown, fig.cap="(ref:mass-height-brown)"}
+
+starwars_data <- read.csv('sw-wrangled.csv')
+data <- starwars_data %>%
+  filter(mass != 1358) %>%
+  mutate(brown_hair_category = ifelse(hair == "brown", "Has brown hair", "No brown hair"))
+
+ggplot(data, aes(x = mass, y = height_in)) +
+  geom_point(aes(color = brown_hair_category), alpha = 0.6) + # Added color aesthetic and adjusted alpha for points
+  geom_smooth(method = "lm", aes(fill = brown_hair_category), color = "black", alpha = 0.2) + # Added fill aesthetic for smooth
+  scale_color_manual(values = c("Has brown hair" = "#A52A2A", "No brown hair" = "#A9A9A9")) + # Custom colors for points
+  scale_fill_manual(values = c("Has brown hair" = "#A52A2A", "No brown hair" = "#A9A9A9")) + # Custom colors for smooth fill
+  facet_wrap(~brown_hair_category) +
+  labs(title = "Mass vs. height by Brown hair category",
+       subtitle = "A critically important analysis",
+       x = "Mass (kg)", y = "Height (in)",
+       caption = "Data source: Star Wars API") +
+  theme_minimal() +
+  theme(plot.title = element_text(face = "bold"),
+        plot.subtitle = element_text(face = "italic"),
+        legend.position = "bottom", # Move legend to bottom
+        legend.title = element_blank(), # Remove legend title
+        plot.caption = element_text(hjust = 0, face = "italic"))
+
+```
+
+## Table
+### Table \@ref(tab:my_unique_table) provides average popularity scores for three cafes.
+
+```{r table, echo=TRUE, results='asis', tab.cap="(ref:my_unique_table)"}
+
+library(knitr)
+library(kableExtra)
+
+# Sample data and table
+sooyoun_table <- data.frame(
+  cafe = c("Starbucks", "Philz", "Peets"),
+  coffee = c(59, 81, 68),
+  food = c(65, 48, 27)
+)
+
+kable(sooyoun_table, "latex", booktabs = TRUE, 
+      caption = "Average coffee and food popularity for three cafes",
+      col.names = c("cafe", "coffee popularity", "food score")) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE) %>%
+  column_spec(1, bold = TRUE, color = "blue") %>%
+  row_spec(0, bold = TRUE, background = "#D3D3D3")
+
+```
+
+
