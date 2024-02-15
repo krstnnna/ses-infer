@@ -1,0 +1,87 @@
+---
+title: "PSYC 30550"
+author: "Sooyoun Zong"
+short_title: "Ses-infer project pilot RMD"
+---
+
+## HW 15. Analysis Plan
+
+
+```{r plan, echo = TRUE}
+
+1. Independent variable Vignettes (two explanation levels X two social classes)
+- 3 higher-class topic vignettes + 3 lower-class topic vignettes
+- Each vignette has basic (detailed explanation) and neutral version (no explanation)
+
+2. Dependent variable
+- Listener’s knowledge rating (7-point Likert)
+- Listener's social class rating (10-point Likert)
+- Participant’s social class + knowledge of various topics
+
+3. Analysis
+
+A. Relationship between participant social class and knowledge
+- Analysis: Correlation analysis for manipulation check ∙ for selecting topics for future study
+- Plot: Scatter plot + fitted line visualizing the relationship
+- Table: Correlation matrix with correlation coefficients, significance levels
+
+B. Compare knowledge and social class ratings between conditions
+- Analysis: ANOVA (among four groups) or Independent samples t-test (between two explanation conditions) to compare (1) average knowledge ratings (2) social class ratings
+- Plots: (1) Histograms visualizing the data distribution (2) Bar graph showing the distribution of ratings for each condition
+- Tables: (1) Descriptive statistics of means & standard deviations (2) Summary of ANOVA / t-test results
+
+```
+
+# HW 16 (1) Example correlation analyses
+
+```{r descriptive statistics, echo = TRUE}
+
+**Data not collected yet**
+
+library(dplyr)
+library(ggplot2)
+
+data %>%
+  summarise(
+    avg_participant_social_class = mean(participant_social_class, na.rm = TRUE),
+    sd_participant_social_class = sd(participant_social_class, na.rm = TRUE),
+    sd_knowledge = sd(knowledge, na.rm = TRUE),
+    avg_social_class = mean(social_class, na.rm = TRUE),
+    sd_social_class = sd(social_class, na.rm = TRUE))
+
+```
+
+```{r hypothesis testing, echo = TRUE}
+
+**Data not collected yet**
+  
+library(psych)
+
+cor.test(data$participant_social_class, data$topic_knowledge)
+
+ggplot(data, aes(x = participant_social_class, y = topic_knowledge)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", color = "blue") +
+  labs(title = "Relationship between participant social class and knowledge of topic",
+       x = "Participant social class",
+       y = "Knowledge of topic")
+
+cor_matrix <- cor(data[c("participant_social_class", "topic_knowledge")], use = "complete.obs")
+print(cor_matrix)
+
+```
+
+# HW 16 (2) Example advanced analysis (mixed-effects model)
+
+```{r hypothesis testing, echo = TRUE}
+
+**Data not collected yet**
+  
+library(lme4)
+
+model <- lmer(knowledge ~ vignette_type + (1 | participant_id), data = data)
+summary(model)
+
+# knowledge is predicted by vignette_type. Random intercepts for each participant_id accounts for the repeated measures (necessary?).
+
+```
