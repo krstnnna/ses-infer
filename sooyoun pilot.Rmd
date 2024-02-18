@@ -4,8 +4,7 @@ author: "Sooyoun Zong"
 short_title: "Ses-infer project pilot RMD"
 ---
 
-## HW 15. Analysis Plan
-
+## HW (15) Analysis Plan
 
 ```{r plan, echo = TRUE}
 
@@ -32,7 +31,7 @@ B. Compare knowledge and social class ratings between conditions
 
 ```
 
-# HW 16 (1) Example correlation analyses
+# HW (16) -1 Example correlation analyses
 
 ```{r descriptive statistics, echo = TRUE}
 
@@ -71,7 +70,7 @@ print(cor_matrix)
 
 ```
 
-# HW 16 (2) Example advanced analysis (mixed-effects model)
+# HW (16) -2 Example advanced analysis (mixed-effects model)
 
 ```{r hypothesis testing, echo = TRUE}
 
@@ -85,3 +84,17 @@ summary(model)
 # knowledge is predicted by vignette_type. Random intercepts for each participant_id accounts for the repeated measures (necessary?).
 
 ```
+
+### HW (17) In-line code references
+**Data not collected yet**
+
+The study explores the relationship between participants' social class and their knowledge of various conversation topics. The social class of r nrow(data) individuals was measured on a 10-point likert scale (MacArthur Subjective SES ladder), and their knowledge across different topics (that are typically well-known by either higher or lower social class group) was assessed on a 7-point likert scale.
+
+The analyses will reveal an average participant social class of r mean(data$participant_social_class, na.rm = TRUE), with a standard deviation of r sd(data$participant_social_class, na.rm = TRUE). Knowledge on the topics will show an average score of r mean(data$topic_knowledge, na.rm = TRUE), and a standard deviation of r sd(data$topic_knowledge, na.rm = TRUE).
+
+The correlation test will indicate a significant relationship between social class and knowledge, with a correlation coefficient of r cor_test_result$estimate and a p-value of r cor_test_result$p.value. This will suggest that as participants' social class increases, their knowledge on higher-class common ground topics will also tend to increase, and vice versa.
+
+A scatter plot will visualize this relationship with a fitted line indicating the direction and strength of the relationships. The correlation matrix will additionally reveal a coefficient of r cor_matrix["participant_social_class", "topic_knowledge"].
+
+The findings will ultimately suggest that socioeconomic factors may indeed play a role in shaping individuals' cultivated knowledge of specific culture amd experiences.
+
