@@ -1,10 +1,48 @@
 ---
-title: "PSYC 30550"
-shorttitle: "Ses-infer project pilot RMD"
+title: "Knowledge Inference and Social Class Common Ground"
+shorttitle: "Knowledge and Social Class Inference"
+
 author:
-  - name: "Sooyoun Zong"
-output: papaja::apa6_pdf
-bibliography: r-references.bib
+  - name          : "Sooyoun Zong"
+    affiliation   : "1"
+    corresponding : yes
+    address       : "5307 S Hyde Park Blvd"
+    email         : "krstnnna@uchicago.edu"
+  
+affiliation:
+  - id            : "1"
+    institution   : "University of Chicago"
+
+authornote: |
+  Please email ndowling@uchicago.edu for questions about this important research.
+
+abstract: |
+  Gas is expensive and burning it is bad for environmental health. How do I choose a car to optimize my gas mileage? We examine a few potential variables to help answer this question.
+  
+keywords          : "Fuel efficiency, transmission, engine size"
+
+bibliography      : "r-references.bib"
+    
+header-includes:
+  - |
+    \makeatletter
+    \renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
+      {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+      {-1em}%
+      {\normalfont\normalsize\bfseries\typesectitle}}
+    
+    \renewcommand{\subparagraph}[1]{\@startsection{subparagraph}{5}{1em}%
+      {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+      {-\z@\relax}%
+      {\normalfont\normalsize\bfseries\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
+    \makeatother
+
+csl               : "`r system.file('rmd', 'apa7.csl', package = 'papaja')`"
+documentclass     : "apa7"
+output:
+  pdf_document:
+    latex_engine: xelatex
+    
 ---
 
 ## HW (15) Analysis Plan
@@ -30,9 +68,7 @@ B. Compare knowledge and social class ratings between conditions
 - Plots: (1) Histograms visualizing the data distribution (2) Bar graph showing the distribution of ratings for each condition
 - Tables: (1) Descriptive statistics of means & standard deviations (2) Summary of ANOVA / t-test results
 
-# HW (16) -1 Example correlation analyses
-
-**Data not collected yet**
+# Result 1. Correlation analyses
 
 ```{r descriptive statistics, echo = TRUE}
 
@@ -56,6 +92,8 @@ dataset %>%
 
 ```
 
+# Result 2. Scatter plot and Correlation matrix
+
 ```{r hypothesis testing, echo = TRUE}
   
 library(psych)
@@ -74,23 +112,28 @@ print(cor_matrix)
 
 ```
 
-# HW (16) -2 Example advanced analysis (mixed-effects model)
+# Results
 
-# HW (17) In-line code references
+The first port of this analysis explored the relationship between participants' social class and their knowledge of various conversation topics. The social class of r nrow(data) individuals was measured on a 10-point likert scale (MacArthur Subjective SES ladder), and their knowledge across different topics (that are typically well-known by either higher or lower social class group) was assessed on a 7-point likert scale.
 
-The study explores the relationship between participants' social class and their knowledge of various conversation topics. The social class of r nrow(data) individuals was measured on a 10-point likert scale (MacArthur Subjective SES ladder), and their knowledge across different topics (that are typically well-known by either higher or lower social class group) was assessed on a 7-point likert scale.
+The analyses  reveals an average participant social class of r mean(dataset$participant_social_class, na.rm = TRUE), with a standard deviation of r sd(dataset$participant_social_class, na.rm = TRUE). Knowledge on the topics shows an average score of r mean(dataset$topic_knowledge, na.rm = TRUE), and a standard deviation of r sd(dataset$topic_knowledge, na.rm = TRUE).
 
-The analyses will reveal an average participant social class of r mean(dataset$participant_social_class, na.rm = TRUE), with a standard deviation of r sd(dataset$participant_social_class, na.rm = TRUE). Knowledge on the topics will show an average score of r mean(dataset$topic_knowledge, na.rm = TRUE), and a standard deviation of r sd(dataset$topic_knowledge, na.rm = TRUE).
+The correlation test indicates a significant relationship between social class and knowledge, with a correlation coefficient of r cor_test_result$estimate and a p-value of r cor_test_result$p.value. This suggests that as participants' social class increases, their knowledge on higher-class common ground topics will also tend to increase, and vice versa.
 
-The correlation test will indicate a significant relationship between social class and knowledge, with a correlation coefficient of r cor_test_result$estimate and a p-value of r cor_test_result$p.value. This will suggest that as participants' social class increases, their knowledge on higher-class common ground topics will also tend to increase, and vice versa.
+A scatter plot visualizes this relationship with a fitted line indicating the direction and strength of the relationships. The correlation matrix additionally reveals a coefficient of r cor_matrix["participant_social_class", "topic_knowledge"].
 
-A scatter plot will visualize this relationship with a fitted line indicating the direction and strength of the relationships. The correlation matrix will additionally reveal a coefficient of r cor_matrix["participant_social_class", "topic_knowledge"].
+The findings ultimately suggest that socioeconomic factors indeed play a role in shaping individuals' cultivated knowledge of specific experiences or fields.
 
-The findings will ultimately suggest that socioeconomic factors may indeed play a role in shaping individuals' cultivated knowledge of specific culture amd experiences.
+# Discussion
 
-@clarkCommonGroundUnderstanding1983
-@krausEvidenceReproductionSocial2019
-@sebastianSpeechCuesSocial2018
-@brown-schmidtTalkingAnotherPerson2011
-@bjornsdottirVisibilitySocialClass2017
+As @fiskeFacingSocialClass2012 note, social class profoundly impacts social identity, as it often dictates the social circles one interacts with and the societal norms one adheres to. The distinct life circumstances and standards build rigorous common ground within social class groups. Each norm, experience, and cultural reference builds unique knowledge bases [@lareauUnequalChildhoodsClass2014] and physical, psychological, and behavioral propensities [@krausSocialClassSolipsism2012; @mansteadPsychologySocialClass2018; @piffUnpackingInequalityParadox2017].
 
+Notably, in settings where diverse social identities interact, bridging these common grounds will be necessary for productive conversation. This would involve being aware of each other’s social class background, predicting gaps in perspectives and knowledge, and explaining concepts as occasion demands [@allenTalkingSomeoneDifferent2020]. It is well known that speakers’ language production reveals much about their awareness of the listener's knowledge. This study takes an additional step by illustrating how the very act of establishing new common ground also reveals the listener's social class. Considering that people from different social classes have access to different information, the listener design will enable inferences about social class.
+
+By probing whether the speaker’s words hint at the social class background of the listener, this study introduces one subtle and intricate way in which class information circulates during social interactions. This study also points out the broader societal consequences of status perception. Cuddy and colleagues [-@cuddyWarmthCompetenceUniversal2008] showed that subtle social status cues can respectively predict impressions—for example, warmth and competence (i.e., Stereotype Content Model (SCM); [@durantePoorWarmRich2017]—which could influence interpersonal relationships and selection processes [@krausSignsSocialClass2017; @stangorStudyStereotypingPrejudice2016; @riveraClassAdvantageCommitment2016]. In a large sense, unraveling the dynamics of social class signaling can yield meaningful insight into the barriers that may account for socioeconomic mobility. 
+
+# References
+
+\begingroup
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
