@@ -45,74 +45,218 @@ output:
     
 ---
 
-## HW (15) Analysis Plan
+# Study Description and Data Preparation
 
-1. Independent variable Vignettes (two explanation levels X two social classes)
-- 3 higher-class topic vignettes + 3 lower-class topic vignettes
-- Each vignette has basic (detailed explanation) and neutral version (no explanation)
+```{r study and data, echo = TRUE}
 
-2. Dependent variable
-- Listener’s knowledge rating (7-point Likert)
-- Listener's social class rating (10-point Likert)
-- Participant’s social class + knowledge of various topics
-
-3. Analysis
-
-A. Relationship between participant social class and knowledge
-- Analysis: Correlation analysis for manipulation check ∙ for selecting topics for future study
-- Plot: Scatter plot + fitted line visualizing the relationship
-- Table: Correlation matrix with correlation coefficients, significance levels
-
-B. Compare knowledge and social class ratings between conditions
-- Analysis: ANOVA (among four groups) or Independent samples t-test (between two explanation conditions) to compare (1) average knowledge ratings (2) social class ratings
-- Plots: (1) Histograms visualizing the data distribution (2) Bar graph showing the distribution of ratings for each condition
-- Tables: (1) Descriptive statistics of means & standard deviations (2) Summary of ANOVA / t-test results
-
-# Result 1. Correlation analyses
-
-```{r descriptive statistics, echo = TRUE}
-
-library(dplyr)
-library(ggplot2)
 library(readxl)
+library(dplyr)
 library(writexl)
 library(tidyverse)
+library(psych)
+library(ggplot2)
 library(citr)
 library(papaja)
 
+# Read data
 dataset <- read_xlsx("dataset.xlsx")
 
-dataset %>%
+# Tidiness check
+str(dataset)
+
+# Data wrangling
+
+data <- dataset %>%
+  select(vignette_type, gender, age, edu, class, knowledge, topic_knowledge, a_inc, a_edu, a_class) %>%  
+  filter(age > 35) %>%  
+  mutate(across(c(vignette_type, gender), factor)) %>%
+  mutate(vignette_type = case_when(
+    vignette_type == "1" ~ "higher-class",
+    vignette_type == "2" ~ "lower-class",
+    TRUE ~ vignette_type  )) %>%  
+  mutate(gender = case_when(
+    gender == "1" ~ "male",
+    gender == "2" ~ "female",
+    TRUE ~ gender  )) %>% 
+  mutate(across(c(vignette_type, gender), factor)) %>%  
+  mutate(evaluator_gender = gender, evaluator_age = age, evaluator_edu = edu,
+         evaluator_class = class, infer_knowledge = knowledge, perceived_inc = a_inc, perceived_edu = a_edu,
+         perceived_class = a_class) %>%  
+  select(vignette_type, perceived_inc, perceived_edu, perceived_class, infer_knowledge, topic_knowledge, evaluator_gender, evaluator_age, evaluator_edu, evaluator_class)  
+
+# Export data
+write_xlsx(data, "data.xlsx")
+
+```
+
+### Evaluators read one of the two (higher-class and lower-class) vignettes of conversation and indicate their inferences of the listener.
+### perceived_(  ) refers to evaluators' perception of the narrator. evaluator_(  ) refers to evaluators' demographic info.
+
+
+# Analysis
+
+## Variable Description
+
+## 1. Independent variable: Two vignettes with basic explanation levels
+- 1 higher-class topic vignette + 1 lower-class topic vignette
+
+## 2. Dependent variables
+- Listener’s knowledge rating (7-point Likert)
+- Listener's social class rating (10-point Likert)
+- Evaluator's knowledge of topic (10-point Likert)
+- Evaluator’s social class (7-point Likert)
+
+## Analysis Plan
+
+### A. Relationship between evaluator social class and knowledge (manipulation check)
+- Analysis 1. Correlation analysis (within each vignette) & Independent samples t-test (between two social class groups of evaluators) to check (1) if the higher the social class is, the greater the knowledge of higher-class topic is and (2) if higher (lower) social class predicts knowledge of higher-class (lower-class) topic.
+
+- Plots:
+  - (1) Scatter plot + fitted line visualizing the relationship
+  - (2) Histograms visualizing the data distribution
+  - (3) Bar plots with the error bars where each bar represents the mean of a group
+- Tables:
+  - (1) Descriptive statistics of means & standard deviations
+  - (2) Correlation matrix with correlation coefficients, significance levels
+  - (3) Summary of t-test results
+
+### B. Compare social class ratings between two vignettes
+- Analysis: Independent samples t-test (between two vignettes) to compare average social class ratings
+- Plots:
+  - (1) Histograms visualizing the data distribution
+  - (2) Bar plots with the error bars where each bar represents the mean of a group
+- Tables:
+  - (1) Descriptive statistics of means & standard deviations
+  - (2) Summary of t-test results
+
+
+# Result 1. Descriptive Statistics
+
+```{r descriptive statistics, echo = TRUE}
+
+data <- read_xlsx("data.xlsx")
+
+high_vignette <- data %>%
+  filter(vignette_type=="higher-class")
+low_vignette <- data %>%
+  filter(vignette_type=="lower-class")
+
+high_vignette %>%
   summarise(
-    avg_participant_social_class = mean(participant_social_class, na.rm = TRUE),
-    sd_participant_social_class = sd(participant_social_class, na.rm = TRUE),
-    sd_knowledge = sd(knowledge, na.rm = TRUE),
-    avg_social_class = mean(social_class, na.rm = TRUE),
-    sd_social_class = sd(social_class, na.rm = TRUE))
+    avg_evaluator_class = mean(evaluator_class, na.rm = TRUE),
+    sd_evaluator_class = sd(evaluator_class, na.rm = TRUE),
+    sd_topic_knowledge = sd(topic_knowledge, na.rm = TRUE),
+    avg_perceived_class = mean(perceived_class, na.rm = TRUE),
+    sd_perceived_class = sd(perceived_class, na.rm = TRUE))
+
+low_vignette %>%
+  summarise(
+    avg_evaluator_class = mean(evaluator_class, na.rm = TRUE),
+    sd_evaluator_class = sd(evaluator_class, na.rm = TRUE),
+    sd_topic_knowledge = sd(topic_knowledge, na.rm = TRUE),
+    avg_perceived_class = mean(perceived_class, na.rm = TRUE),
+    sd_perceived_class = sd(perceived_class, na.rm = TRUE))
 
 ```
 
-# Result 2. Scatter plot and Correlation matrix
+# Result 2. Correlation analysis of evaluator knowledge
+## Correlation Test, Scatter Plot, and Correlation Matrix
 
-```{r hypothesis testing, echo = TRUE}
+```{r correlation analysis, echo = TRUE}
   
-library(psych)
+cor.test(high_vignette$evaluator_class, high_vignette$topic_knowledge)
 
-cor.test(dataset$participant_social_class, dataset$topic_knowledge)
-
-ggplot(dataset, aes(x = participant_social_class, y = topic_knowledge)) +
+ggplot(high_vignette, aes(x = evaluator_class, y = topic_knowledge)) +
   geom_point(alpha = 0.5) +
-  geom_smooth(method = "lm", color = "blue") +
-  labs(title = "Relationship between participant social class and knowledge of topic",
-       x = "Participant social class",
-       y = "Knowledge of topic")
+  geom_smooth(method = "lm", color = "skyblue3") +
+  labs(title = "Relationship between evaluator class and knowledge of higher-class topic",
+       x = "Evaluator social class",
+       y = "Knowledge of higher-class topic")
 
-cor_matrix <- cor(dataset[c("participant_social_class", "topic_knowledge")], use = "complete.obs")
-print(cor_matrix)
+cor_matrix_1 <- cor(high_vignette[c("evaluator_class", "topic_knowledge")], use = "complete.obs")
+print(cor_matrix_1)
+
+cor.test(low_vignette$evaluator_class, low_vignette$topic_knowledge)
+
+ggplot(low_vignette, aes(x = evaluator_class, y = topic_knowledge)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", color = "lightpink3") +
+  labs(title = "Relationship between evaluator class and knowledge of lower-class topic",
+       x = "Evaluator social class",
+       y = "Knowledge of lower-class topic")
+
+cor_matrix_2 <- cor(low_vignette[c("evaluator_class", "topic_knowledge")], use = "complete.obs")
+print(cor_matrix_2)
 
 ```
 
-# Results
+# Result 3.1. Independent Samples T-test of evaluator knowledge
+
+```{r T-test, echo = TRUE}
+
+median_class <- median(high_vignette$evaluator_class, na.rm = TRUE)
+high_vignette$group <- ifelse(high_vignette$evaluator_class > median_class, "higher-class", "lower-class")
+
+t_test_result <- t.test(topic_knowledge ~ group, data = high_vignette)
+print(t_test_result)
+
+group_summary <- high_vignette %>%
+  group_by(group) %>%
+  summarise(
+    average_knowledge = mean(topic_knowledge, na.rm = TRUE),
+    sem = sd(topic_knowledge, na.rm = TRUE) / sqrt(n())
+  )
+print(group_summary)
+
+```
+
+# Result 3.2. Bar plot of evaluator knowledge
+
+```{r bar plot, echo = TRUE}
+
+ggplot(group_summary, aes(x = group, y = average_knowledge, fill = group)) +
+  geom_bar(stat = "identity", position = position_dodge(), color = "black") +
+  geom_errorbar(aes(ymin = average_knowledge - sem, ymax = average_knowledge + sem),
+                width = 0.2, position = position_dodge(0.9)) +
+  labs(title = "Knowledge of higher-class topic by evaluator social class",
+       x = "Evaluator social class", y = "Average knowledge of topic") +
+  scale_fill_brewer(palette = "Pastel1") +
+  theme_minimal()
+
+```
+# Result 4.1 Independent Samples T-test of listener social class
+
+```{r T-test 2, echo = TRUE}
+
+t_test_result_2 <- t.test(infer_knowledge ~ vignette_type, data = data)
+print(t_test_result_2)
+
+group_summary_2 <- data %>%
+  group_by(vignette_type) %>%
+  summarise(
+    average_infer_knowledge = mean(infer_knowledge, na.rm = TRUE),
+    sem_infer = sd(infer_knowledge, na.rm = TRUE) / sqrt(n())
+  )
+print(group_summary_2)
+
+```
+
+# Result 4.2. Bar plot of listener social class
+
+```{r bar plot 2, echo = TRUE}
+
+ggplot(group_summary_2, aes(x = vignette_type, y = average_infer_knowledge, fill = vignette_type)) +
+  geom_bar(stat = "identity", position = position_dodge(), color = "black") +
+  geom_errorbar(aes(ymin = average_infer_knowledge - sem_infer, ymax = average_infer_knowledge + sem_infer),
+                width = 0.2, position = position_dodge(0.9)) +
+  labs(title = "Social class rating of listener by vignette type",
+       x = "Vignette type", y = "Social class rating") +
+  scale_fill_brewer(palette = "Pastel1") +
+  theme_minimal()
+
+```
+
+# Discussion
 
 The first port of this analysis explored the relationship between participants' social class and their knowledge of various conversation topics. The social class of r nrow(data) individuals was measured on a 10-point likert scale (MacArthur Subjective SES ladder), and their knowledge across different topics (that are typically well-known by either higher or lower social class group) was assessed on a 7-point likert scale.
 

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2024.2.21)  26 FEB 2024 22:31
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2024.2.21)  29 FEB 2024 09:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1016,142 +1016,392 @@ Class apa7 Warning: Short title not defined.
 Class apa7 Warning: Abstract not defined.
 
 Class apa7 Info: Keywords not defined on input line 148.
-Missing character: There is no ∙ (U+2219) in font [lmroman10-regular]:mapping=tex-text;!
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 221.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 161.
 
-Overfull \hbox (57.50676pt too wide) in paragraph at lines 234--234
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 175--175
 []\TU/lmtt/m/n/10 ## The following objects are masked from 'package:stats':[] 
  []
 
 
-Overfull \hbox (52.25676pt too wide) in paragraph at lines 240--240
+Overfull \hbox (52.25676pt too wide) in paragraph at lines 181--181
 []\TU/lmtt/m/n/10 ## The following objects are masked from 'package:base':[] 
  []
 
 
-Overfull \hbox (194.00676pt too wide) in paragraph at lines 257--257
+Overfull \hbox (194.00676pt too wide) in paragraph at lines 196--196
 []\TU/lmtt/m/n/10 ## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --[] 
  []
 
 
-Overfull \hbox (194.00676pt too wide) in paragraph at lines 264--264
+Overfull \hbox (194.00676pt too wide) in paragraph at lines 203--203
 []\TU/lmtt/m/n/10 ## -- Conflicts ------------------------------------------ tidyverse_conflicts() --[] 
  []
 
 
-Overfull \hbox (304.25676pt too wide) in paragraph at lines 264--264
+Overfull \hbox (304.25676pt too wide) in paragraph at lines 203--203
 []\TU/lmtt/m/n/10 ## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors[] 
  []
 
 
-Overfull \hbox (194.00676pt too wide) in paragraph at lines 299--299
-[]\TU/lmtt/m/n/10 ##   avg_participant_social_~1 sd_participant_socia~2 sd_knowledge avg_social_class[] 
+Overfull \hbox (68.00676pt too wide) in paragraph at lines 218--218
+[]\TU/lmtt/m/n/10 ## The following objects are masked from 'package:ggplot2':[] 
+ []
+
+
+Overfull \hbox (5.00676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ## tibble [87 x 41] (S3: tbl_df/tbl/data.frame)[] 
+ []
+
+
+Overfull \hbox (62.75676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ participant_id : num [1:87] 1 2 3 4 5 6 7 8 9 10 ...[] 
+ []
+
+
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ vignette_type  : num [1:87] 1 1 1 1 1 1 1 1 1 1 ...[] 
+ []
+
+
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ gender         : num [1:87] 1 2 1 2 1 1 1 2 1 1 ...[] 
+ []
+
+
+Overfull \hbox (110.00676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ age            : num [1:87] 52 37 55 42 53 42 53 40 51 43 ...[] 
+ []
+
+
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ age_c          : num [1:87] 3 1 3 2 3 2 3 2 3 2 ...[] 
+ []
+
+
+Overfull \hbox (73.25676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ region         : num [1:87] 8 1 1 9 8 8 11 1 11 15 ...[] 
+ []
+
+
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ job            : num [1:87] 2 4 4 4 2 4 9 4 4 4 ...[] 
+ []
+
+
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ monthinc       : num [1:87] 5 3 6 2 6 4 3 2 7 8 ...[] 
+ []
+
+
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ edu            : num [1:87] 6 5 5 4 5 4 5 5 5 5 ...[] 
+ []
+
+
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ edu_m          : num [1:87] 1 3 1 2 2 2 1 2 3 3 ...[] 
+ []
+
+
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ edu_f          : num [1:87] 1 3 1 3 3 2 3 3 3 5 ...[] 
+ []
+
+
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ class          : num [1:87] 4 4 5 5 7 5 3 4 5 5 ...[] 
+ []
+
+
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ rich           : num [1:87] 2 2 4 3 3 2 2 1 3 1 ...[] 
+ []
+
+
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ hire           : num [1:87] 3 2 4 3 4 3 5 3 2 4 ...[] 
+ []
+
+
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ colleg         : num [1:87] 3 2 4 3 3 2 5 1 3 4 ...[] 
+ []
+
+
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ friend         : num [1:87] 3 2 4 3 4 2 5 1 3 4 ...[] 
+ []
+
+
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ partner        : num [1:87] 3 3 3 3 4 2 4 1 3 4 ...[] 
+ []
+
+
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ a_inc          : num [1:87] 3 3 4 4 3 5 5 4 5 6 ...[] 
+ []
+
+
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ a_inc_m        : num [1:87] 5 3 5 4 4 4 5 1 5 4 ...[] 
+ []
+
+
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ a_inc_f        : num [1:87] 6 5 5 4 4 6 5 7 5 7 ...[] 
+ []
+
+
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ a_edu          : num [1:87] 5 5 5 3 5 5 5 5 5 6 ...[] 
+ []
+
+
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ a_edu_m        : num [1:87] 5 3 5 3 4 3 5 5 5 5 ...[] 
+ []
+
+
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ a_edu_f        : num [1:87] 5 5 5 3 4 4 5 5 5 5 ...[] 
+ []
+
+
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ a_class        : num [1:87] 7 8 7 6 7 8 7 5 8 9 ...[] 
+ []
+
+
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ a_rich         : num [1:87] 4 4 4 3 3 4 4 4 4 5 ...[] 
+ []
+
+
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ close          : num [1:87] 3 2 3 3 3 3 4 1 4 3 ...[] 
+ []
+
+
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ comp           : num [1:87] 3 3 4 3 4 3 4 3 4 4 ...[] 
+ []
+
+
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ conf           : num [1:87] 4 5 4 3 3 4 5 4 4 5 ...[] 
+ []
+
+
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ assert         : num [1:87] 4 3 5 3 4 3 5 3 4 5 ...[] 
+ []
+
+
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ knowledge      : num [1:87] 3 3 4 3 3 3 4 3 4 5 ...[] 
+ []
+
+
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ dilig          : num [1:87] 3 3 4 3 4 3 4 3 4 5 ...[] 
+ []
+
+
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ warm           : num [1:87] 4 3 3 3 4 3 4 3 4 4 ...[] 
+ []
+
+
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ topic_knowledge: num [1:87] 3 3 4 3 3 3 4 3 4 4 ...[] 
  []
 
 [1
 
 
 ]
-Overfull \hbox (194.00676pt too wide) in paragraph at lines 299--299
-[]\TU/lmtt/m/n/10 ##                       <dbl>                  <dbl>        <dbl>            <dbl>[] 
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ honest         : num [1:87] 3 3 5 3 4 3 4 3 4 4 ...[] 
  []
 
 
-Overfull \hbox (194.00676pt too wide) in paragraph at lines 299--299
-[]\TU/lmtt/m/n/10 ## 1                      4.92                   1.57        0.865             5.57[] 
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ optim          : num [1:87] 3 4 4 3 3 4 4 3 4 4 ...[] 
  []
 
 
-Overfull \hbox (62.75676pt too wide) in paragraph at lines 299--299
-[]\TU/lmtt/m/n/10 ## # i abbreviated names: 1: avg_participant_social_class,[] 
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ esteem         : num [1:87] 3 5 4 3 4 4 5 3 4 3 ...[] 
  []
 
 
-Overfull \hbox (68.00676pt too wide) in paragraph at lines 320--320
-[]\TU/lmtt/m/n/10 ## The following objects are masked from 'package:ggplot2':[] 
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ edu_dif        : num [1:87] 1 0 0 1 0 1 0 0 0 1 ...[] 
  []
 
 
-Overfull \hbox (125.75676pt too wide) in paragraph at lines 340--340
-[]\TU/lmtt/m/n/10 ## data:  dataset$participant_social_class and dataset$topic_knowledge[] 
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ edu_m_dif      : num [1:87] 4 0 4 1 2 1 4 3 2 2 ...[] 
  []
 
 
-Overfull \hbox (78.50676pt too wide) in paragraph at lines 340--340
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ edu_f_dif      : num [1:87] 4 2 4 0 1 2 2 2 2 0 ...[] 
+ []
+
+
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ class_dif      : num [1:87] 3 4 2 1 0 3 4 1 3 4 ...[] 
+ []
+
+
+Overfull \hbox (57.50676pt too wide) in paragraph at lines 285--285
+[]\TU/lmtt/m/n/10 ##  $ rich_dif       : num [1:87] 2 2 0 0 0 2 2 3 1 4 ...[] 
+ []
+
+
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 318.
+
+
+Package fancyhdr Warning: \headheight is too small (13.4457pt): 
+(fancyhdr)                Make it at least 22.76004pt, for example:
+(fancyhdr)                \setlength{\headheight}{22.76004pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-9.31435pt}.
+
+[2]
+Overfull \hbox (188.75676pt too wide) in paragraph at lines 513--513
+[]\TU/lmtt/m/n/10 ##   avg_evaluator_class sd_evaluator_class sd_topic_knowledge avg_perceived_class[] 
+ []
+
+
+Overfull \hbox (188.75676pt too wide) in paragraph at lines 513--513
+[]\TU/lmtt/m/n/10 ##                 <dbl>              <dbl>              <dbl>               <dbl>[] 
+ []
+
+
+Overfull \hbox (188.75676pt too wide) in paragraph at lines 513--513
+[]\TU/lmtt/m/n/10 ## 1                4.73               1.48              0.699                6.57[] 
+ []
+
+
+Overfull \hbox (10.25676pt too wide) in paragraph at lines 513--513
+[]\TU/lmtt/m/n/10 ## # i 1 more variable: sd_perceived_class <dbl>[] 
+ []
+
+
+Overfull \hbox (188.75676pt too wide) in paragraph at lines 533--533
+[]\TU/lmtt/m/n/10 ##   avg_evaluator_class sd_evaluator_class sd_topic_knowledge avg_perceived_class[] 
+ []
+
+
+Overfull \hbox (188.75676pt too wide) in paragraph at lines 533--533
+[]\TU/lmtt/m/n/10 ##                 <dbl>              <dbl>              <dbl>               <dbl>[] 
+ []
+
+
+Overfull \hbox (188.75676pt too wide) in paragraph at lines 533--533
+[]\TU/lmtt/m/n/10 ## 1                5.03               1.73              0.806                4.83[] 
+ []
+
+
+Overfull \hbox (10.25676pt too wide) in paragraph at lines 533--533
+[]\TU/lmtt/m/n/10 ## # i 1 more variable: sd_perceived_class <dbl>[] 
+ []
+
+
+Overfull \hbox (141.50676pt too wide) in paragraph at lines 561--561
+[]\TU/lmtt/m/n/10 ## data:  high_vignette$evaluator_class and high_vignette$topic_knowledge[] 
+ []
+
+
+Overfull \hbox (78.50676pt too wide) in paragraph at lines 561--561
 []\TU/lmtt/m/n/10 ## alternative hypothesis: true correlation is not equal to 0[] 
  []
 
-File: sooyoun-pilot_files/figure-latex/hypothesis testing-1.pdf Graphic file (type pdf)
-<use sooyoun-pilot_files/figure-latex/hypothesis testing-1.pdf>
+File: sooyoun-pilot_files/figure-latex/correlation analysis-1.pdf Graphic file (type pdf)
+<use sooyoun-pilot_files/figure-latex/correlation analysis-1.pdf>
 
-Overfull \hbox (0.0005pt too wide) in paragraph at lines 357--358
+Overfull \hbox (0.0005pt too wide) in paragraph at lines 578--579
 [][] 
  []
 
 
-Underfull \vbox (badness 2005) has occurred while \output is active []
-
-
-Overfull \hbox (115.25676pt too wide) in paragraph at lines 370--370
-[]\TU/lmtt/m/n/10 ##                          participant_social_class topic_knowledge[] 
+Overfull \hbox (20.75676pt too wide) in paragraph at lines 591--591
+[]\TU/lmtt/m/n/10 ##                 evaluator_class topic_knowledge[] 
  []
 
 
-Overfull \hbox (115.25676pt too wide) in paragraph at lines 370--370
-[]\TU/lmtt/m/n/10 ## participant_social_class                1.0000000       0.2005089[] 
+Overfull \hbox (20.75676pt too wide) in paragraph at lines 591--591
+[]\TU/lmtt/m/n/10 ## evaluator_class       1.0000000       0.4432694[] 
  []
 
 
-Overfull \hbox (115.25676pt too wide) in paragraph at lines 370--370
-[]\TU/lmtt/m/n/10 ## topic_knowledge                         0.2005089       1.0000000[] 
- []
-
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 384.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 384.
-LaTeX Font Info:    Trying to load font information for OML+ptmcm on input line 384.
-(/Users/sooyoun/Library/TinyTeX/texmf-dist/tex/latex/psnfss/omlptmcm.fd
-File: omlptmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ptmcm.
-)
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.00092pt on input line 384.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.00064pt on input line 384.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.00046pt on input line 384.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 9.99893pt on input line 384.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.99925pt on input line 384.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 4.99947pt on input line 384.
-LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 384.
-(/Users/sooyoun/Library/TinyTeX/texmf-dist/tex/latex/psnfss/ot1ptm.fd
-File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
-)
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 384.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 384.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 384.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 384.
-(/Users/sooyoun/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 384.
-(/Users/sooyoun/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-Overfull \hbox (76.73793pt too wide) in paragraph at lines 383--388
-[][][][][][] [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]$\TU/lmr/m/n/10 participant_social_class,
+Overfull \hbox (20.75676pt too wide) in paragraph at lines 591--591
+[]\TU/lmtt/m/n/10 ## topic_knowledge       0.4432694       1.0000000[] 
  []
 
 
-Overfull \hbox (40.20793pt too wide) in paragraph at lines 383--388
-[][][][][][] [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]$\TU/lmr/m/n/10 topic_knowledge,
+Overfull \hbox (131.00676pt too wide) in paragraph at lines 611--611
+[]\TU/lmtt/m/n/10 ## data:  low_vignette$evaluator_class and low_vignette$topic_knowledge[] 
+ []
+
+
+Overfull \hbox (78.50676pt too wide) in paragraph at lines 611--611
+[]\TU/lmtt/m/n/10 ## alternative hypothesis: true correlation is not equal to 0[] 
+ []
+
+[3]
+File: sooyoun-pilot_files/figure-latex/correlation analysis-2.pdf Graphic file (type pdf)
+<use sooyoun-pilot_files/figure-latex/correlation analysis-2.pdf>
+
+Overfull \hbox (0.0005pt too wide) in paragraph at lines 628--629
+[][] 
+ []
+
+
+Overfull \hbox (20.75676pt too wide) in paragraph at lines 641--641
+[]\TU/lmtt/m/n/10 ##                 evaluator_class topic_knowledge[] 
+ []
+
+
+Overfull \hbox (20.75676pt too wide) in paragraph at lines 641--641
+[]\TU/lmtt/m/n/10 ## evaluator_class       1.0000000       0.1415367[] 
+ []
+
+
+Overfull \hbox (20.75676pt too wide) in paragraph at lines 641--641
+[]\TU/lmtt/m/n/10 ## topic_knowledge       0.1415367       1.0000000[] 
+ []
+
+
+Overfull \hbox (377.75676pt too wide) in paragraph at lines 669--669
+[]\TU/lmtt/m/n/10 ## alternative hypothesis: true difference in means between group higher-class and group lower-class is not equal to 0[] 
+ []
+
+
+Overfull \hbox (52.25676pt too wide) in paragraph at lines 669--669
+[]\TU/lmtt/m/n/10 ## mean in group higher-class  mean in group lower-class[] 
+ []
+
+
+Overfull \hbox (52.25676pt too wide) in paragraph at lines 669--669
+[]\TU/lmtt/m/n/10 ##                   3.428571                   3.086957[] 
+ []
+
+File: sooyoun-pilot_files/figure-latex/bar plot-1.pdf Graphic file (type pdf)
+<use sooyoun-pilot_files/figure-latex/bar plot-1.pdf>
+
+Overfull \hbox (0.0005pt too wide) in paragraph at lines 708--710
+[][]
+ []
+
+
+Overfull \hbox (377.75676pt too wide) in paragraph at lines 730--730
+[]\TU/lmtt/m/n/10 ## alternative hypothesis: true difference in means between group higher-class and group lower-class is not equal to 0[] 
  []
 
 
@@ -1161,25 +1411,117 @@ Package fancyhdr Warning: \headheight is too small (13.4457pt):
 (fancyhdr)                You might also make \topmargin smaller to compensate:
 (fancyhdr)                \addtolength{\topmargin}{-9.31435pt}.
 
-[2] [3] (./sooyoun-pilot.aux)
+[4]
+Overfull \hbox (52.25676pt too wide) in paragraph at lines 730--730
+[]\TU/lmtt/m/n/10 ## mean in group higher-class  mean in group lower-class[] 
+ []
+
+
+Overfull \hbox (52.25676pt too wide) in paragraph at lines 730--730
+[]\TU/lmtt/m/n/10 ##                   3.433333                   3.055556[] 
+ []
+
+
+Overfull \hbox (31.25676pt too wide) in paragraph at lines 750--750
+[]\TU/lmtt/m/n/10 ##   vignette_type average_infer_knowledge sem_infer[] 
+ []
+
+
+Overfull \hbox (31.25676pt too wide) in paragraph at lines 750--750
+[]\TU/lmtt/m/n/10 ##   <chr>                           <dbl>     <dbl>[] 
+ []
+
+
+Overfull \hbox (31.25676pt too wide) in paragraph at lines 750--750
+[]\TU/lmtt/m/n/10 ## 1 higher-class                     3.43     0.114[] 
+ []
+
+
+Overfull \hbox (31.25676pt too wide) in paragraph at lines 750--750
+[]\TU/lmtt/m/n/10 ## 2 lower-class                      3.06     0.126[] 
+ []
+
+File: sooyoun-pilot_files/figure-latex/bar plot 2-1.pdf Graphic file (type pdf)
+<use sooyoun-pilot_files/figure-latex/bar plot 2-1.pdf>
+
+Overfull \hbox (0.0005pt too wide) in paragraph at lines 769--770
+[][] 
+ []
+
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 7.0pt on input line 783.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 5.0pt on input line 783.
+LaTeX Font Info:    Trying to load font information for OML+ptmcm on input line 783.
+(/Users/sooyoun/Library/TinyTeX/texmf-dist/tex/latex/psnfss/omlptmcm.fd
+File: omlptmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ptmcm.
+)
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 10.00092pt on input line 783.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 7.00064pt on input line 783.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 5.00046pt on input line 783.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 9.99893pt on input line 783.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 6.99925pt on input line 783.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 4.99947pt on input line 783.
+LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 783.
+(/Users/sooyoun/Library/TinyTeX/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 783.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 783.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 783.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 783.
+(/Users/sooyoun/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 783.
+(/Users/sooyoun/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+Overfull \hbox (76.73793pt too wide) in paragraph at lines 782--787
+[][][][][][] [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]$\TU/lmr/m/n/10 participant_social_class,
+ []
+
+
+Overfull \hbox (40.20793pt too wide) in paragraph at lines 782--787
+[][][][][][] [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]$\TU/lmr/m/n/10 topic_knowledge,
+ []
+
+[5]
+
+Package fancyhdr Warning: \headheight is too small (13.4457pt): 
+(fancyhdr)                Make it at least 22.76004pt, for example:
+(fancyhdr)                \setlength{\headheight}{22.76004pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+(fancyhdr)                \addtolength{\topmargin}{-9.31435pt}.
+
+[6] (./sooyoun-pilot.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
 Package rerunfilecheck Info: File `sooyoun-pilot.out' has not changed.
-(rerunfilecheck)             Checksum: 0A108DAEEBD4D95BEC861850984E34F8;921.
+(rerunfilecheck)             Checksum: 13DE226975BCD7FF0C5BBCE25F93B95A;5637.
  )
 (\end occurred inside a group at level 1)
 
-### semi simple group (level 1) entered at line 444 (\begingroup)
+### semi simple group (level 1) entered at line 843 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 29711 strings out of 476793
- 586056 string characters out of 5802484
- 1950839 words of memory out of 5000000
- 51255 multiletter control sequences out of 15000+600000
- 568152 words of font info for 73 fonts, out of 8000000 for 9000
+ 29762 strings out of 476793
+ 588527 string characters out of 5802484
+ 1971839 words of memory out of 5000000
+ 51299 multiletter control sequences out of 15000+600000
+ 568168 words of font info for 75 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 99i,11n,121p,457b,486s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,11n,121p,833b,486s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on sooyoun-pilot.pdf (3 pages).
+Output written on sooyoun-pilot.pdf (6 pages).
