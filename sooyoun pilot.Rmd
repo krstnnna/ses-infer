@@ -1,11 +1,10 @@
 ---
-title: "Knowledge Inference and Social Class Common Ground"
-shorttitle: "Knowledge and Social Class Inference"
+title             : "Knowledge Inference and Social Class Common Ground"
+shorttitle        : "Social Class and Conversational Cues"
 
 author:
   - name          : "Sooyoun Zong"
     affiliation   : "1"
-    corresponding : yes
     address       : "5307 S Hyde Park Blvd"
     email         : "krstnnna@uchicago.edu"
   
@@ -14,270 +13,350 @@ affiliation:
     institution   : "University of Chicago"
 
 authornote: |
-  Please email ndowling@uchicago.edu for questions about this important research.
+  Please email krstnnna@uchicago.edu for questions about this important research.
 
 abstract: |
-  Gas is expensive and burning it is bad for environmental health. How do I choose a car to optimize my gas mileage? We examine a few potential variables to help answer this question.
+  This study explores the nuanced way in which social class is inferred from conversational cues. Grounded in the disciplines of psychology and sociolinguistics, I examine how speakers' adjusted language allows third-party evaluators to draw inferences about the listener's social class. Through an experimental design involving vignettes that vary in the level of explanation provided, the research seeks to uncover the cognitive processes underlying the perception of social class from brief speech samples and the potential impact of these perceptions on judgments about a person's competence and social identity. This investigation into the subtleties of language and social signaling offers insights into the reproduction of stratification through everyday interactions.
   
-keywords          : "Fuel efficiency, transmission, engine size"
+keywords          : "listener design, knowledge inference, social class"
 
 bibliography      : "r-references.bib"
-    
-header-includes:
-  - |
-    \makeatletter
-    \renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
-      {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
-      {-1em}%
-      {\normalfont\normalsize\bfseries\typesectitle}}
-    
-    \renewcommand{\subparagraph}[1]{\@startsection{subparagraph}{5}{1em}%
-      {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
-      {-\z@\relax}%
-      {\normalfont\normalsize\bfseries\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
-    \makeatother
 
-csl               : "`r system.file('rmd', 'apa7.csl', package = 'papaja')`"
-documentclass     : "apa7"
-output:
-  pdf_document:
-    latex_engine: xelatex
-    
+floatsintext      : yes
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+linenumbers       : yes
+mask              : no
+draft             : no
+
+classoption       : "man"
+output            : papaja::apa6_pdf
 ---
 
-# Study Description and Data Preparation
-
-```{r study and data, echo = TRUE}
-
+```{r setup, include = FALSE}
 library(readxl)
 library(dplyr)
 library(writexl)
+library(ggpubr)
 library(tidyverse)
 library(psych)
 library(ggplot2)
 library(citr)
 library(papaja)
+library(knitr)
+library(corrplot)
+library(kableExtra)
+library(tibble)
+library(patchwork)
+library(RColorBrewer)
+r_refs("r-references.bib")
 
-# Read data
 dataset <- read_xlsx("dataset.xlsx")
-
-# Tidiness check
-str(dataset)
-
-# Data wrangling
-
 data <- dataset %>%
   select(vignette_type, gender, age, edu, class, knowledge, topic_knowledge, a_inc, a_edu, a_class) %>%  
   filter(age > 35) %>%  
   mutate(across(c(vignette_type, gender), factor)) %>%
   mutate(vignette_type = case_when(
-    vignette_type == "1" ~ "higher-class",
-    vignette_type == "2" ~ "lower-class",
+    vignette_type == "1" ~ "Higher-Class",
+    vignette_type == "2" ~ "Lower-Class",
     TRUE ~ vignette_type  )) %>%  
   mutate(gender = case_when(
-    gender == "1" ~ "male",
-    gender == "2" ~ "female",
+    gender == "1" ~ "Male",
+    gender == "2" ~ "Female",
     TRUE ~ gender  )) %>% 
   mutate(across(c(vignette_type, gender), factor)) %>%  
   mutate(evaluator_gender = gender, evaluator_age = age, evaluator_edu = edu,
          evaluator_class = class, infer_knowledge = knowledge, perceived_inc = a_inc, perceived_edu = a_edu,
          perceived_class = a_class) %>%  
   select(vignette_type, perceived_inc, perceived_edu, perceived_class, infer_knowledge, topic_knowledge, evaluator_gender, evaluator_age, evaluator_edu, evaluator_class)  
-
-# Export data
 write_xlsx(data, "data.xlsx")
-
 ```
 
-### Evaluators read one of the two (higher-class and lower-class) vignettes of conversation and indicate their inferences of the listener.
-### perceived_(  ) refers to evaluators' perception of the narrator. evaluator_(  ) refers to evaluators' demographic info.
+```{r analysis-preferences, echo = FALSE}
+# Seed for random number generation
+set.seed(42)
+knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
+```
 
+```{r subset-data, echo = FALSE}
+high_vignette <- data %>%
+  filter(vignette_type=="Higher-Class")
+low_vignette <- data %>%
+  filter(vignette_type=="Lower-Class")
+```
+
+# Knowledge Inference and Social Class Common Ground
+
+In the realm of social interaction, our linguistic, behavioral, and cultural markers play a pivotal role in conveying our social identity, with research highlighting the ability of humans to discern others' social status through verbal and nonverbal cues. @sebastianSpeechCuesSocial2018a have shown that language cues like accent, tone, and linguistic variations are key in revealing a speaker's ethnicity, social class, and age, while @bjornsdottirVisibilitySocialClass2017a found that facial cues alone allow perceivers to accurately categorize individuals as rich or poor, often employing stereotype-related impressions in their judgments. @krausEvidenceReproductionSocial2019a further demonstrated that social class signals are effectively communicated through brief speech samples, emphasizing pronunciation as a significant indicator. This body of work suggests that social class can be inferred not only from one's speech or appearance but also from how others interact with and address the individual, indicating a broader, more nuanced understanding of social class perception.
+
+The concept of listener design in sociolinguistics, which involves speakers tailoring their speech patterns and utterances to their audience's perceived knowledge and background, further enriches the discussion on communication and social identity. This adaptability in communication aims to establish social rapport and ensure clarity across diverse social contexts, guided by the speaker's and listener's social identities and the interpersonal dynamics at play. The notion of class-specific common knowledge underscores that individuals from different social classes possess distinct information and experiences, influencing the social circles they engage with and the societal norms they follow. Therefore, effective communication in diverse social settings necessitates an awareness of each other's social class background, highlighting the role of listener design in revealing and navigating social class perceptions.
+
+# The Present Analysis
+
+Built upon the premise of the listener design—that the speaker correctly assumes and accommodates language to the listener, this study aims to demonstrate that the speaker’s words may inform the third party of the listener’s knowledge and social class. In specific objective of this analysis is to capture people’s sense of class-specific knowledge. Identifying the listener’s social class from the inferred knowledge will entail their recognition of the common ground that different social class groups possess.
+
+The experiment will be constructed on the following logic: (1) The speaker’s basic explanation of a topic (that a particular social class group typically knows) implies the listener’s lack of knowledge. (2) The listener’s lack of certain knowledge indicates his or her distance from that social class group.
+
+# Methods
+## Participants
+100 participants from various socioeconomic backgrounds taok part in this study. The participants were recruited online and compensated through Prolific, a widely used recruitment platform for social research.
+
+## Procedure
+I created vignettes of two individuals having a conversation, where a particular topic comes up, and one person clarifies. The topics are expected to differ significantly regarding knowledge or experience based on social class. Participants ("Evaluators") read one of the two (higher-class and lower-class) vignettes of conversation and were asked to report their perception of the listener's social class as well as their knowledge of the topic being discussed.
+
+## Measures
+### Manipulation check
+After reading each vignette, participants indicated their knowledge of the topic on a 5-point Likert scale (1 = no knowledge, 5 = thorough knowledge).
+
+### Listener's social class rating
+Participants were asked to identify the listener’s social class using the MacArthur Scale of Subjective Socioeconomic Status (Adler et al., 2000), which shows ten rungs representing U.S. society. Participants indicated the position in which the listener would be placed.
+	
+### Demographic backgrounds
+Social identities of all contributors influence the dynamics of speech-based class perception (Stephens et al., 2019). Participants reported their subjective social class at the end of survey as well.
 
 # Analysis
-
-## Variable Description
-
-## 1. Independent variable: Two vignettes with basic explanation levels
-- 1 higher-class topic vignette + 1 lower-class topic vignette
-
-## 2. Dependent variables
-- Listener’s knowledge rating (7-point Likert)
-- Listener's social class rating (10-point Likert)
-- Evaluator's knowledge of topic (10-point Likert)
-- Evaluator’s social class (7-point Likert)
-
-## Analysis Plan
-
-### A. Relationship between evaluator social class and knowledge (manipulation check)
-- Analysis 1. Correlation analysis (within each vignette) & Independent samples t-test (between two social class groups of evaluators) to check (1) if the higher the social class is, the greater the knowledge of higher-class topic is and (2) if higher (lower) social class predicts knowledge of higher-class (lower-class) topic.
-
-- Plots:
-  - (1) Scatter plot + fitted line visualizing the relationship
-  - (2) Histograms visualizing the data distribution
-  - (3) Bar plots with the error bars where each bar represents the mean of a group
-- Tables:
-  - (1) Descriptive statistics of means & standard deviations
-  - (2) Correlation matrix with correlation coefficients, significance levels
-  - (3) Summary of t-test results
-
-### B. Compare social class ratings between two vignettes
-- Analysis: Independent samples t-test (between two vignettes) to compare average social class ratings
-- Plots:
-  - (1) Histograms visualizing the data distribution
-  - (2) Bar plots with the error bars where each bar represents the mean of a group
-- Tables:
-  - (1) Descriptive statistics of means & standard deviations
-  - (2) Summary of t-test results
-
-
-# Result 1. Descriptive Statistics
-
-```{r descriptive statistics, echo = TRUE}
-
-data <- read_xlsx("data.xlsx")
-
-high_vignette <- data %>%
-  filter(vignette_type=="higher-class")
-low_vignette <- data %>%
-  filter(vignette_type=="lower-class")
-
-high_vignette %>%
+## Overall Descriptive Statistics
+```{r descriptive-statistics}
+high_table <- high_vignette %>%
   summarise(
     avg_evaluator_class = mean(evaluator_class, na.rm = TRUE),
     sd_evaluator_class = sd(evaluator_class, na.rm = TRUE),
+    avg_topic_knowledge = mean(topic_knowledge, na.rm = TRUE),
     sd_topic_knowledge = sd(topic_knowledge, na.rm = TRUE),
     avg_perceived_class = mean(perceived_class, na.rm = TRUE),
     sd_perceived_class = sd(perceived_class, na.rm = TRUE))
-
-low_vignette %>%
+low_table <- low_vignette %>%
   summarise(
     avg_evaluator_class = mean(evaluator_class, na.rm = TRUE),
     sd_evaluator_class = sd(evaluator_class, na.rm = TRUE),
+    avg_topic_knowledge = mean(topic_knowledge, na.rm = TRUE),
     sd_topic_knowledge = sd(topic_knowledge, na.rm = TRUE),
     avg_perceived_class = mean(perceived_class, na.rm = TRUE),
     sd_perceived_class = sd(perceived_class, na.rm = TRUE))
+des_table <- rbind(high_table, low_table) %>%
+  mutate(Vignette = c("Higher-Class", "Lower-Class"))
+des_table <- des_table %>% select(Vignette, everything())
+kable(des_table, digits = 2, booktabs = T,
+      col.names = c("Vignette", "Class", "SD", "Knowledge",	"SD",
+                    "Listener Class Rating",	"SD"),
+      align = c("c", "c", "c", "c", "c"),
+      caption = "Descriptive Statistics of Evaluators' Average Social class, Knowledge, and Rating") %>%
+  kable_styling(latex_options = "hold_position")
 
 ```
 
-# Result 2. Correlation analysis of evaluator knowledge
-## Correlation Test, Scatter Plot, and Correlation Matrix
+To examine the relationship between an evaluator's social class and their knowledge of the specific conversation topic, I implemented a two-fold analysis. The first part of the analysis utilized correlation analysis within each vignette[^1] and the second part employed independent samples t-test between two groups of evaluators categorized by social class[^2]. This dual approach aimed to verify two hypotheses: firstly, whether a higher social class correlates with increased knowledge about the topic typically associated with the upper class, and secondly, if an evaluator's social class (higher or lower) could predict their knowledge level on the topic related to their respective social classes.
 
-```{r correlation analysis, echo = TRUE}
-  
-cor.test(high_vignette$evaluator_class, high_vignette$topic_knowledge)
+Next, the difference in listener's social class rating was also assessed by independent samples t-test between two vignettes[^2]. This revealed whether evaluators were able to accurately infer the social class of listener from the conversation.
 
-ggplot(high_vignette, aes(x = evaluator_class, y = topic_knowledge)) +
-  geom_point(alpha = 0.5) +
-  geom_smooth(method = "lm", color = "skyblue3") +
-  labs(title = "Relationship between evaluator class and knowledge of higher-class topic",
-       x = "Evaluator social class",
-       y = "Knowledge of higher-class topic")
+Tables are used to present a more detailed quantitative analysis. These include descriptive statistics and summaries of t-test results, which provide a comprehensive overview of the statistical relationships. Complementing the statistical data, I employed several types of plots to visually represent the findings[^1]. Scatter plots with fitted lines are used to illustrate the relationship between social class and knowledge on higher-class topics, offering a visual representation of any positive or negative correlations. Bar plots with error bars are generated, with each bar representing the mean level of a group, allowing for a clear comparison of mean levels between two groups.
 
-cor_matrix_1 <- cor(high_vignette[c("evaluator_class", "topic_knowledge")], use = "complete.obs")
-print(cor_matrix_1)
+[^1]: The analyses and visualizations were conducted using R's ggplot() function.
+[^2]: The analysis was conducted using R's t.test() function.
 
-cor.test(low_vignette$evaluator_class, low_vignette$topic_knowledge)
-
-ggplot(low_vignette, aes(x = evaluator_class, y = topic_knowledge)) +
-  geom_point(alpha = 0.5) +
-  geom_smooth(method = "lm", color = "lightpink3") +
-  labs(title = "Relationship between evaluator class and knowledge of lower-class topic",
-       x = "Evaluator social class",
-       y = "Knowledge of lower-class topic")
-
-cor_matrix_2 <- cor(low_vignette[c("evaluator_class", "topic_knowledge")], use = "complete.obs")
-print(cor_matrix_2)
-
+## Evaluator Knowledge: Correlation with Social Class
+```{r correlation-analysis, fig.cap = "Correlation Between Evaluator Class and Knowledge"}
+all_values <- c(high_vignette$topic_knowledge, low_vignette$topic_knowledge)
+y_min <- min(all_values)
+y_max <- max(all_values)
+p1 <- ggplot(high_vignette, aes(x = evaluator_class, y = topic_knowledge)) +
+  geom_smooth(method = "lm", se = FALSE, color = "skyblue3") +
+  labs(x = "Evaluator Social Class",
+       y = "Knowledge of Higher-Class Topic") +
+  stat_cor(label.x = 3, label.y = 3) +
+  ylim(y_min, y_max) +
+  theme_minimal() +
+  theme(plot.title = element_text(face="bold"),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        axis.text.x = element_text(size=9),
+        axis.text.y = element_text(size=9),
+        axis.title.x = element_text(size = 11),
+        axis.title.y = element_text(size = 11),
+        plot.margin = unit(c(1,1,1,1),"cm"))
+p2 <- ggplot(low_vignette, aes(x = evaluator_class, y = topic_knowledge)) +
+  geom_smooth(method = "lm", se = FALSE, color = "lightpink3") +
+  labs(x = "Evaluator Social Class",
+       y = "Knowledge of Lower-Class Topic") +
+  stat_cor(label.x = 3, label.y = 3) +
+  ylim(y_min, y_max) +
+  theme_minimal() +
+  theme(plot.title = element_text(face="bold"),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        axis.text.x = element_text(size=9),
+        axis.text.y = element_text(size=9),
+        axis.title.x = element_text(size = 11),
+        axis.title.y = element_text(size = 11),
+        plot.margin = unit(c(1,1,1,1),"cm"))
+combined_plot <- p1 + p2
+combined_plot <- combined_plot + 
+  plot_annotation(
+    title = "Correlation of Evaluator Class with Knowledge of Topic",
+    theme = theme(
+      plot.title = element_text(face = "bold", size = 13, hjust = 0.5),
+      plot.margin = margin(8, 8, 8, 8)
+    )
+  )
+combined_plot
 ```
 
-# Result 3.1. Independent Samples T-test of evaluator knowledge
+The analysis revealed a significant correlation for the higher-class vignette (r = .44, p = .014), indicating a strong relationship between social class and knowledge of topics typically associated with higher-class contexts. No significant correlation was found for the lower-class vignette (r = .14, p = .041).
 
-```{r T-test, echo = TRUE}
-
+```{r group by class, include = FALSE}
 median_class <- median(high_vignette$evaluator_class, na.rm = TRUE)
-high_vignette$group <- ifelse(high_vignette$evaluator_class > median_class, "higher-class", "lower-class")
+high_vignette$group <- ifelse(high_vignette$evaluator_class > median_class, "Higher-Class", "Lower-Class")
+low_vignette$group <- ifelse(low_vignette$evaluator_class > median_class, "Higher-Class", "Lower-Class")
 
-t_test_result <- t.test(topic_knowledge ~ group, data = high_vignette)
-print(t_test_result)
-
-group_summary <- high_vignette %>%
+summary1 <- high_vignette %>%
   group_by(group) %>%
   summarise(
-    average_knowledge = mean(topic_knowledge, na.rm = TRUE),
-    sem = sd(topic_knowledge, na.rm = TRUE) / sqrt(n())
+    Average = mean(topic_knowledge, na.rm = TRUE),
+    SD = sd(topic_knowledge, na.rm = TRUE),
+    sem = sd(topic_knowledge, na.rm = TRUE) / sqrt(n()),
+    N = n()
   )
-print(group_summary)
-
+summary2 <- low_vignette %>%
+  group_by(group) %>%
+  summarise(
+    Average = mean(topic_knowledge, na.rm = TRUE),
+    SD = sd(topic_knowledge, na.rm = TRUE),
+    sem = sd(topic_knowledge, na.rm = TRUE) / sqrt(n()),
+    N = n()
+  )
 ```
 
-# Result 3.2. Bar plot of evaluator knowledge
+## Evaluator Knowledge: Comparison by Social Class
+```{r group-statistics, echo=FALSE}
+kable(summary1, digits = 2, booktabs = T,
+      col.names = c("Social Class", "Mean", "SD", "sem", "N"),
+      align = c("c", "c", "c", "c", "c"),
+      caption = "Summary Statistics of Evaluator Knowledge of Higher-Class Topic") %>%
+  kable_styling(latex_options = "hold_position")
 
-```{r bar plot, echo = TRUE}
-
-ggplot(group_summary, aes(x = group, y = average_knowledge, fill = group)) +
-  geom_bar(stat = "identity", position = position_dodge(), color = "black") +
-  geom_errorbar(aes(ymin = average_knowledge - sem, ymax = average_knowledge + sem),
-                width = 0.2, position = position_dodge(0.9)) +
-  labs(title = "Knowledge of higher-class topic by evaluator social class",
-       x = "Evaluator social class", y = "Average knowledge of topic") +
-  scale_fill_brewer(palette = "Pastel1") +
-  theme_minimal()
-
+kable(summary2, digits = 2, booktabs = T,
+      col.names = c("Social Class", "Mean", "SD", "sem", "N"),
+      align = c("c", "c", "c", "c", "c"),
+      caption = "Summary Statistics of Evaluator Knowledge of Lower-Class Topic") %>%
+  kable_styling(latex_options = "hold_position")
 ```
-# Result 4.1 Independent Samples T-test of listener social class
 
-```{r T-test 2, echo = TRUE}
+```{r t-test-evaluator, results ='asis'}
+t_test1 <- t.test(topic_knowledge ~ group, data = high_vignette)
+t_test2 <- t.test(topic_knowledge ~ group, data = low_vignette)
+test1_stats <- c(t_test1$estimate, t_test1$statistic, t_test1$p.value, t_test1$parameter)
+test2_stats <- c(t_test2$estimate, t_test2$statistic, t_test2$p.value, t_test2$parameter)
+combined_stats <- data.frame(
+  Vignette = c("Higher-Class", "Lower-Class"),
+  MeanDifference = c(test1_stats[1] - test1_stats[2], test2_stats[1] - test2_stats[2]),
+  t_value = c(test1_stats[3], test2_stats[3]),
+  p_value = c(test1_stats[4], test2_stats[4]),
+  df = c(test1_stats[5], test2_stats[5]))
+knitr::kable(combined_stats, digits = 2, booktabs = T, align = c("c", "c", "c", "c", "c"),
+             caption = "Difference in Evaluator Knowledge of Topic by Social Class") %>%
+  kable_styling(latex_options = "hold_position")
+```
 
-t_test_result_2 <- t.test(infer_knowledge ~ vignette_type, data = data)
-print(t_test_result_2)
+```{r bar-plot-high, fig.cap = "Knowledge of Higher-Class Topic by Evaluator Class"}
+pal <- c("bisque4", "bisque2")
+ggplot(summary1, aes(x = group, y = Average, fill = group)) +
+  geom_bar(stat = "identity", width = 0.3, position = position_dodge(), color = "black", show.legend = FALSE) +
+  geom_errorbar(aes(ymin = Average - sem, ymax = Average + sem),
+                width = 0.1, position = position_dodge(0.9)) +
+    theme_minimal() +
+  theme(plot.title = element_text(face = "bold"),
+        axis.title = element_text(size = 12),
+        axis.text = element_text(face = "bold",size = 12),
+        plot.margin = unit(c(1,1,1,1),"cm")) +
+  labs(title = "Knowledge of Higher-Class Topic by Evaluator Social Class",
+       x = "Evaluator Social Class", y = "Average Knowledge of Topic") +
+  scale_fill_manual(values = pal)
+```
 
-group_summary_2 <- data %>%
+```{r bar-plot-low, fig.cap = "Knowledge of Lower-Class Topic by Evaluator Class"}
+ggplot(summary2, aes(x = group, y = Average, fill = group)) +
+  geom_bar(stat = "identity", width = 0.3, position = position_dodge(), color = "black", show.legend = FALSE) +
+  geom_errorbar(aes(ymin = Average - sem, ymax = Average + sem),
+                width = 0.1, position = position_dodge(0.9)) +
+    theme_minimal() +
+  theme(plot.title = element_text(face = "bold"),
+        axis.title = element_text(size = 12),
+        axis.text = element_text(face = "bold", size = 12),
+        plot.margin = unit(c(1,1,1,1),"cm")) +
+  labs(title = "Knowledge of Lower-Class Topic by Evaluator Social Class",
+       x = "Evaluator Social Class", y = "Average Knowledge of Topic") +
+  scale_fill_manual(values = pal)
+```
+
+Further investigation through independent samples t-tests between higher-class and lower-class evaluators showed no significant difference in the knowledge regarding both conversation topics (Table\ \@ref(tab:t-test-evaluator)). Albeit the non-significant difference, bar plots for these analyses are presented (see Figure\ \@ref(fig:bar-plot-high), Figure\ \@ref(fig:bar-plot-low)).
+
+## Listener Social Class Rating: Comparison by Vignette Type
+
+```{r t-test-stat}
+sum <- data %>%
   group_by(vignette_type) %>%
   summarise(
-    average_infer_knowledge = mean(infer_knowledge, na.rm = TRUE),
-    sem_infer = sd(infer_knowledge, na.rm = TRUE) / sqrt(n())
+    Average = mean(perceived_class, na.rm = TRUE),
+    SD = sd(perceived_class, na.rm = TRUE),
+    sem = sd(perceived_class, na.rm = TRUE) / sqrt(n()),
+    N = n()
   )
-print(group_summary_2)
-
+kable(sum, digits = 2, booktabs = T,
+      col.names = c("Vignette", "Mean", "SD", "sem", "N"),
+      align = c("c", "c", "c", "c", "c"),
+      caption = "Summary Statistics of Listener Social Class Rating by Vignette Type") %>%
+  kable_styling(latex_options = "hold_position")
 ```
 
-# Result 4.2. Bar plot of listener social class
-
-```{r bar plot 2, echo = TRUE}
-
-ggplot(group_summary_2, aes(x = vignette_type, y = average_infer_knowledge, fill = vignette_type)) +
-  geom_bar(stat = "identity", position = position_dodge(), color = "black") +
-  geom_errorbar(aes(ymin = average_infer_knowledge - sem_infer, ymax = average_infer_knowledge + sem_infer),
-                width = 0.2, position = position_dodge(0.9)) +
-  labs(title = "Social class rating of listener by vignette type",
-       x = "Vignette type", y = "Social class rating") +
-  scale_fill_brewer(palette = "Pastel1") +
-  theme_minimal()
-
+```{r t-test-listener, results ='asis'}
+t_test3 <- t.test(perceived_class ~ vignette_type, data = data)
+test3_stats <- c(t_test3$estimate, t_test3$statistic, t_test3$p.value, t_test3$parameter)
+test3_stats <- data.frame(
+  MeanDifference = c(test3_stats[1] - test3_stats[2]),
+  t_value = c(test3_stats[3]),
+  p_value = c(test3_stats[4]),
+  df = c(test3_stats[5]))
+rownames(test3_stats) <- c("Higher- vs. Lower")
+knitr::kable(test3_stats, digits = 5, booktabs = T, align = c("c", "c", "c", "c"),
+             caption = "Difference in Listener Social Class Rating by Vignette Type") %>%
+  kable_styling(latex_options = "hold_position")
 ```
 
+Upon analyzing the dataset, I grouped observations by vignette type and calculated summary statistics for the listener's social class rating. The average inferred social class for the higher-class vignette was `r sum$Average[sum$vignette_type == "Higher-Class"]`, with a standard deviation of `r sum$SD[sum$vignette_type == "Higher-Class"]` and a sample size of `r sum$N[sum$vignette_type == "Higher-Class"]`. Conversely, for the Lower-class vignette, the average was `r sum$Average[sum$vignette_type == "Lower-Class"]`, with a standard deviation of `r sum$SD[sum$vignette_type == "Lower-Class"]` and a sample size of `r sum$N[sum$vignette_type == "Lower-Class"]`.
+
+To further investigate the impact of vignette type on social class rating, a t-test was performed. The mean difference in perceived class ratings between higher- and lower-class vignettes was `r round(test3_stats$MeanDifference)`, with a t-value of `r test3_stats$t_value` and a p-value of `r format.pval(test3_stats$p_value, digits = 2)`. The findings were significant, `r if(test3_stats$p_value < 0.05) 'indicating a strong effect of vignette type on perceived class.' else 'suggesting no strong effect of vignette type on perceived class'` (see Table 6).
+
+```{r bar-plot-listener, fig.cap = "Listener Class Rating by Vignette Type"}
+
+pal2 <- c("lightsteelblue", "honeydew3")
+ggplot(sum, aes(x = vignette_type, y = Average, fill = vignette_type)) +
+  geom_bar(stat = "identity", width = 0.3, position = position_dodge(), color = "black",
+           show.legend = FALSE) +
+  geom_errorbar(aes(ymin = Average - sem, ymax = Average + sem),
+                width = 0.1, position = position_dodge(0.9)) +
+    theme_minimal() +
+  theme(plot.title = element_text(face = "bold"),
+        axis.title = element_text(size = 12),
+        axis.text = element_text(face = "bold", size = 12),
+        plot.margin = unit(c(1,1,1,1),"cm")) +
+  labs(title = "Listener Social Class Rating by Vignette Type",
+       x = "Vignette Type", y = "Social Class Rating") +
+  scale_fill_manual(values = pal2)
+```
+
+Figure\ \@ref(fig:bar-plot-listener) presents the average social class ratings of two vignettes and their associated standard errors. The average rating for the higher-class vignette type was `r round(mean(sum$Average[sum$vignette_type == "Higher-Class"]), 2)` with a standard error of `r round(mean(sum$sem[sum$vignette_type == "Higher-Class"]), 2)`, whereas for the second vignette type, the average rating was `r round(mean(sum$Average[sum$vignette_type == "Lower-Class"]), 2)` accompanied by a standard error of `r round(mean(sum$sem[sum$vignette_type == "Lower-Class"]), 2)`. The result underscores the significant difference (`r format.pval(test3_stats$p_value, digits = 3)`) in listener's social class ratings based on the topic of conversation.
+
 # Discussion
-
-The first port of this analysis explored the relationship between participants' social class and their knowledge of various conversation topics. The social class of r nrow(data) individuals was measured on a 10-point likert scale (MacArthur Subjective SES ladder), and their knowledge across different topics (that are typically well-known by either higher or lower social class group) was assessed on a 7-point likert scale.
-
-The analyses  reveals an average participant social class of r mean(dataset$participant_social_class, na.rm = TRUE), with a standard deviation of r sd(dataset$participant_social_class, na.rm = TRUE). Knowledge on the topics shows an average score of r mean(dataset$topic_knowledge, na.rm = TRUE), and a standard deviation of r sd(dataset$topic_knowledge, na.rm = TRUE).
-
-The correlation test indicates a significant relationship between social class and knowledge, with a correlation coefficient of r cor_test_result$estimate and a p-value of r cor_test_result$p.value. This suggests that as participants' social class increases, their knowledge on higher-class common ground topics will also tend to increase, and vice versa.
-
-A scatter plot visualizes this relationship with a fitted line indicating the direction and strength of the relationships. The correlation matrix additionally reveals a coefficient of r cor_matrix["participant_social_class", "topic_knowledge"].
-
-The findings ultimately suggest that socioeconomic factors indeed play a role in shaping individuals' cultivated knowledge of specific experiences or fields.
-
-# Discussion
-
 As @fiskeFacingSocialClass2012 note, social class profoundly impacts social identity, as it often dictates the social circles one interacts with and the societal norms one adheres to. The distinct life circumstances and standards build rigorous common ground within social class groups. Each norm, experience, and cultural reference builds unique knowledge bases [@lareauUnequalChildhoodsClass2014] and physical, psychological, and behavioral propensities [@krausSocialClassSolipsism2012; @mansteadPsychologySocialClass2018; @piffUnpackingInequalityParadox2017].
-
 Notably, in settings where diverse social identities interact, bridging these common grounds will be necessary for productive conversation. This would involve being aware of each other’s social class background, predicting gaps in perspectives and knowledge, and explaining concepts as occasion demands [@allenTalkingSomeoneDifferent2020]. It is well known that speakers’ language production reveals much about their awareness of the listener's knowledge. This study takes an additional step by illustrating how the very act of establishing new common ground also reveals the listener's social class. Considering that people from different social classes have access to different information, the listener design will enable inferences about social class.
-
 By probing whether the speaker’s words hint at the social class background of the listener, this study introduces one subtle and intricate way in which class information circulates during social interactions. This study also points out the broader societal consequences of status perception. Cuddy and colleagues [-@cuddyWarmthCompetenceUniversal2008] showed that subtle social status cues can respectively predict impressions—for example, warmth and competence (i.e., Stereotype Content Model (SCM); [@durantePoorWarmRich2017]—which could influence interpersonal relationships and selection processes [@krausSignsSocialClass2017; @stangorStudyStereotypingPrejudice2016; @riveraClassAdvantageCommitment2016]. In a large sense, unraveling the dynamics of social class signaling can yield meaningful insight into the barriers that may account for socioeconomic mobility. 
+
+\newpage
 
 # References
 
 \begingroup
 \setlength{\parindent}{-0.5in}
 \setlength{\leftskip}{0.5in}
+
+<div id="refs" custom-style="Bibliography"></div>
+\endgroup
