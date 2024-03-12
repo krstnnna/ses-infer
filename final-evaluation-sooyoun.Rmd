@@ -1,0 +1,231 @@
+---
+title: "final-evaluation-sooyoun"
+output: html_document
+date: "2024-03-08"
+---
+
+# Assignment Info
+
+- **Student name:** Sooyoun Zong
+- **Project title:** Knowledge Inference and Social Class Common Ground
+- **Submission date:** Mar 6 at 1:30am (late, excused)
+
+## Report plan summary
+
+*can't copy and paste from pdf to plain text, refer to actual pdf submission*
+
+# Assessment
+
+The lists of expectations in each category are to help you understand the kinds of things I'm looking for as I grade. These **do not** map onto point values. A checked box indicates the expectation was met or exceeded. (This also helps me spot patterns across students to identify ways I can improve the syllabus and lectures for future students.)
+
+Ratings indicate overall success for each category and loosely map onto points. Starting from 20 points, no points are lost for the highest rating, -3 for the lowest, and somewhere in between for the middle ratings. Points lost in that range are dependent on how many issues there are, how much they matter, whether it's technicality vs problem of consequence, whether it's the same core issue that lost you points in a different section, whether exceeding expectations elsewhere compensate for a small issue, whether it's something we talked about in your report plan meeting, etc. 
+
+Additional comments are included below the ratings as needed. Final project and class grades are included at the end of the document.
+
+**WARNING: Grades for this assignment are going to be lower than you expect!** Don't freak out. I use "specs-based grading", which works very differently from the letter-grade-to-percentage conversion you are probably used to. It's more like Harry Potter OWLs -- 19/20 is outstanding, 16-18 exceeds expectations (not a C!), 13-15 meets expectations (not an F!), etc. You're not down to T(roll) until you're in the negatives. Remember this is only 20% of your final grade!
+
+## .Rmd/PDF match
+
+**Expectations:**
+
+- [x] PDF submitted to Canvas is identical to the PDF created when I knit your .Rmd
+- [x] Knitting does not produce any errors or problematic warnings
+
+**Rating:**
+
+- [x] Perfect match
+- [ ] At least one minor problem
+- [ ] At least one major problem and/or multiple minor problems
+- [ ] Multiple major problems
+- [ ] Prohibitive error(s), missing PDF, or significant problems
+
+*No additional comments*
+
+## Data read-in, prep, wrangling
+
+**Expectations:**
+
+- [x] Data preparation and wrangling code present (may separate files)
+- [x] Intermediate datasets (if used) are functional and read in successfully
+- [x] Raw or intermediate data read into .Rmd code chunk
+- [ ] All code in .R files and .Rmd code chunks is sufficiently commented and comprehensible
+- [x] Additional expectations set in the report plan (if any) are met
+
+**Rating:**
+
+- [x] No noteworthy issues 
+- [ ] At least one minor problem
+- [ ] At least one major problem and/or multiple minor problems
+- [ ] Multiple major problems
+- [ ] Prohibitive errors or significant problems
+
+More comments please!
+
+## Figures, tables, analyses
+
+### Figures
+
+**Expectations:**
+
+- [x] At least 2 plots are produced in .Rmd chunks (not imported images)
+- [x] Figures are different kinds of plots 
+- [x] Figures follow report plan (may have inconsequential deviations)
+- [ ] Figures are publication-quality
+- [x] Figures are sensibly captioned with `fig.cap` chunk option
+- [x] Figures are informative and interpretable
+- [ ] All code in .R files and .Rmd code chunks is sufficiently commented and comprehensible
+- [x] Additional expectations set in the report plan (if any) are met
+
+**Rating:**
+
+- [ ] No noteworthy issues 
+- [x] At least one minor problem
+- [ ] At least one major problem and/or multiple minor problems
+- [ ] Multiple major problems
+- [ ] Prohibitive errors or significant problems
+
+Your bar plots look really nice! Figure 1 needs a little work still though. Just visually, you need to move the stats text so it doesn't overlap the lines (you can include it in the caption instead if you like). A ebigger issue is just that this isn't a very intuitive plot to interpret. I'd give some consideration to whether this is the best way to communicate your point. It's tricky for me to say whther that's the case because you don't actually reference this figure in your paper at all, so I'm not 100% sure what you really want me to take away from it.
+
+### Table
+
+**Expectations:** 
+
+If you included more than the one required table, only one needs to meet expectations.
+
+- [x] At least 1 table is produced in .Rmd chunk
+- [x] Table follows report plan (may have inconsequential deviations)
+- [x] Table is publication-quality
+- [x] Table is sensibly captioned within the function (e.g., the kable caption argument)
+- [x] Table is informative and interpretable
+- [ ] All code in .R files and .Rmd code chunks is sufficiently commented and comprehensible
+- [x] Additional expectations set in the report plan (if any) are met
+
+**Rating:**
+
+- [x] No noteworthy issues 
+- [ ] At least one minor problem
+- [ ] At least one major problem and/or multiple minor problems
+- [ ] Multiple major problems
+- [ ] Prohibitive errors or significant problems
+
+*No additional comments*
+
+### Analysis
+
+**Expectations:**
+
+If you included more than the one required analysis (or other requirements agreed on in the report plan), only one needs to meet expectations.
+
+- [x] At least 1 statistical analysis is executed in .Rmd chunk (or sourced code if appropriate)
+- [x] Analysis follows report plan (may have inconsequential deviations)
+- [x] Analysis is executed correctly
+- [x] Analysis is appropriate (not necessarily ideal) for data type(s) and research questions
+- [x] Analysis is referenced and interpreted in narrative text
+- [ ] All code in .R files and .Rmd code chunks is sufficiently commented and comprehensible
+- [x] Additional expectations set in the report plan (if any) are met
+
+**Rating:**
+
+- [x] No noteworthy issues 
+- [ ] At least one minor problem
+- [ ] At least one major problem and/or multiple minor problems
+- [ ] Multiple major problems
+- [ ] Prohibitive errors or significant problems
+
+*No additional comments*
+
+## Manuscript
+
+### Narrative text
+
+**Expectations:**
+
+- [x] Narrative text includes 1500+ words distributed across 4 sections
+- [x] Sufficient literature review (per report plan)
+- [x] Sufficient methods section (per report plan)
+- [x] Sufficient results section (per report plan)
+- [x] Sufficient discussion (per report plan)
+- [ ] Narrative provides sufficient context and interpretation for all figures, tables, and analyses
+- [x] Additional expectations set in the report plan (if any) are met
+
+**Rating:**
+
+- [ ] No noteworthy issues 
+- [x] At least one minor problem
+- [ ] At least one major problem and/or multiple minor problems
+- [ ] Multiple major problems
+- [ ] Prohibitive errors or significant problems
+
+Building on what I said above about Figure 1, you can add clarifying context in your narrative throughout your results section.
+
+### Markdown
+
+**Expectations:**
+
+- [ ] Figures and tables are successfully referenced with markdown syntax
+- [x] At least 2 in-text code references
+- [x] At least 1 in-text code reference includes in-text function
+- [x] R Markdown is used effectively to follow APA format (e.g., headings, emphasized text)
+- [x] YAML header is functional and complete
+- [x] Additional expectations set in the report plan (if any) are met
+
+**Rating:**
+
+- [ ] No noteworthy issues 
+- [x] At least one minor problem
+- [ ] At least one major problem and/or multiple minor problems
+- [ ] Multiple major problems
+- [ ] Prohibitive errors or significant problems
+
+You never reference Figure 1! Poor Figure 1 :( The only table you reference with markdown is Table 4, and you have one literal/verbatim reference to Table 6. Any figure or table included in a paper should be referenced and explained in the text.
+
+You have definitely met the requirement for in-text R code, but I encourage you to do more! Replace every single numeral in your narrative text with R code if you can!
+
+### BibTeX
+
+**Expectations:**
+
+- [x] At least 10 in-text citations using BibTeX reference syntax
+- [x] In-text citations are rendered without errors
+- [x] In-text citations have no obvious problems (e.g., incorrect special characters)
+- [ ] R and R packages are cited in-text using `cite_r()`
+- [x] References page renders without errors
+- [x] References page is APA formatted and free of obvious problems
+- [x] Additional expectations set in the report plan (if any) are met
+
+**Rating:**
+
+- [ ] No noteworthy issues 
+- [x] At least one minor problem
+- [ ] At least one major problem and/or multiple minor problems
+- [ ] Multiple major problems
+- [ ] Prohibitive errors or significant problems
+
+*No additional comments*
+
+## GitHub & best practices
+
+These expectations will not have an impact on your grade unless there are egregious issues, but I include them to give you feedback on what you can do if you use this workflow going forward.
+
+**Expectations:**
+
+- [ ] GitHub repo and contained files are sensibly and informatively named
+- [ ] GitHub repo is well-structured and tidy
+- [ ] GitHub README.md file is informative
+- [ ] Commit messages are informative
+- [x] Style is (relatively) consistent
+- [ ] Comments are frequent and informative
+- [x] Code chunks have informative names, follow 1-chunk-1-thing rule, and are distributed throughout the text
+
+*No additional comments*
+
+## Overall
+
+Great work, Sooyoun! A couple things to clean up here and there, but overall a really nice job integrating everything we've learned this quarter into your paper.
+
+# Grade
+
+- **Final report grade:** 16
+- **Class participation grade:** 19
+- **Weekly assignments:** 60
+- **TOTAL Final course grade:** 95 (A)
